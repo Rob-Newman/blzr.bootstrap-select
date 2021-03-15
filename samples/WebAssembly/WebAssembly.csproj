@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Blzr.BootstrapSelect\Blzr.BootstrapSelect.csproj" />
+    <ProjectReference Include="..\..\src\Blzr.BootstrapSelect\Blzr.BootstrapSelect.csproj" />
   </ItemGroup>
 
 </Project>
