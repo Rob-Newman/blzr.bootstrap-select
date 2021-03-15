@@ -1,0 +1,125 @@
+﻿@page "/"
+
+<h1>Blzr.BootstrapSelect</h1>
+
+<h2>Basic</h2>
+<BootstrapSelect Id="basic" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                 TType="string" />
+
+<h2>Multi</h2>
+<BootstrapSelect Id="multi-basic" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                 TType="IEnumerable<int>" IsMultiple="true" />
+
+<h2>Value Binding</h2>
+<BootstrapSelect Id="value-binding" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                 TType="string" @bind-Value="@model1.SelectedStringValue" Label="string" />
+<p>Selected Value: @model1.SelectedStringValue</p>
+<BootstrapSelect Id="value-binding" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                 TType="int" @bind-Value="@model1.SelectedIntValue" Label="int" />
+<p>Selected Value: @model1.SelectedIntValue</p>
+<BootstrapSelect Id="value-binding" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                 TType="IEnumerable<string>" @bind-Value="@model1.SelectedStringValues" Label="IEnumerable<string>" IsMultiple="true" />
+<p>Selected Value: @string.Join(",", model1.SelectedStringValues)</p>
+<BootstrapSelect Id="value-binding" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                 TType="IEnumerable<int>" @bind-Value="@model1.SelectedIntValues" Label="IEnumerable<int>" IsMultiple="true" />
+<p>Selected Value: @string.Join(",", model1.SelectedIntValues)</p>
+
+<h2>Value Changed Callback</h2>
+<BootstrapSelect Id="basic" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                 TType="string" Value="@basicValue" ValueChanged="@OnValueChanged"/>
+<p>Callback Count: @callBackCount, Selected Value: @basicValue</p>
+
+<h2>Validation</h2>
+<EditForm Model="@model2" OnValidSubmit="@ValidSubmit">
+    <DataAnnotationsValidator />
+    <BootstrapSelect Id="validation" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" @bind-Value="@model2.SelectedStringValue" ValidationFor="@(() => model2.SelectedStringValue)" ShowPlaceholder="true" />
+    <p>Selected Value: @model2.SelectedStringValue</p>
+    <button type="submit" class="btn btn-outline-primary">Save</button>
+</EditForm>
+
+<h2>Live Search</h2>
+<BootstrapSelect Id="live-search" ShowSearch="true" TItem="Country" Data="@countries" TextField="@((item) => item.Name)"
+                 ValueField="@((item) => item.Id.ToString())" TType="string" />
+
+<h2>Placeholder Text</h2>
+<BootstrapSelect Id="placeholder-single" ShowPlaceholder="true" PlaceholderText="Choose one the following..." TItem="Country" Data="@countries" 
+                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" TType="string" Label="Single"/>
+<BootstrapSelect Id="placeholder-multi" ShowPlaceholder="true" PlaceholderText="Choose from the following..." TItem="Country" Data="@countries"
+                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<string>" Label="Multi"/>
+
+<h2>Selected Text Format</h2>
+<BootstrapSelect Id="selected-text-format-values" SelectedTextFormat="SelectedTextFormat.Values" TItem="Country" Data="@countries"
+                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" />
+<BootstrapSelect Id="selected-text-format-static" SelectedTextFormat="SelectedTextFormat.Static" TItem="Country" Data="@countries"
+                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" />
+<BootstrapSelect Id="selected-text-format-count" SelectedTextFormat="SelectedTextFormat.Count" TItem="Country" Data="@countries"
+                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" />
+
+
+@code {
+    private IList<Country> countries;
+
+    private MyModel model1;
+
+    private MyModel model2;
+
+    private string basicValue;
+
+    private int callBackCount = 0;
+
+    protected override void OnInitialized()
+    {
+        countries = new List<Country> {
+            new Country { Id = 1, Name = "United Kingdom" },
+            new Country { Id = 2, Name = "United States" },
+            new Country { Id = 3, Name = "Germany" },
+            new Country { Id = 4, Name = "France" },
+            new Country { Id = 5, Name = "China" }
+        };
+
+        model1 = new MyModel
+        {
+            SelectedIntValues = new List<int> { 4 },
+            SelectedStringValues = new List<string> { "5" }
+        };
+
+        model2 = new MyModel();
+    }
+
+    public class Country
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+    }
+
+    public class MyModel
+    {
+        public MyModel()
+        {
+            SelectedIntValues = new List<int>();
+            SelectedStringValues = new List<string>();
+        }
+
+        public IEnumerable<int> SelectedIntValues { get; set; }
+
+        public IEnumerable<string> SelectedStringValues { get; set; }
+
+        [Required]
+        public string SelectedStringValue { get; set; }
+
+
+        public int SelectedIntValue { get; set; }
+    }
+
+    private static void ValidSubmit()
+    {
+    }
+
+    private async Task OnValueChanged(string newValue)
+    {
+        basicValue = newValue;
+        callBackCount++;
+    }
+}

@@ -1,0 +1,60 @@
+﻿@typeparam TItem
+@typeparam TType
+
+@if (isActive)
+{
+    <div class="overlay" @onclick="ToggleDropDown"></div>
+}
+
+@if (!string.IsNullOrWhiteSpace(Label))
+{
+    <label class="form-control-label" for="@Id">@Label</label>
+}
+
+<div id="@Id" class="dropdown bootstrap-select @(IsMultiple ? "bootstrap-multi-select" : "") show-tick @CssClass" style="@(!string.IsNullOrEmpty(Width) ? $"width: {Width};" : "")">
+    <button type="button" class="btn btn-light dropdown-toggle @FieldCssClasses" role="button" title="@ButtonText" @onclick="ToggleDropDown">
+        <div class="filter-option">
+            <div class="filter-option-inner">
+                <div class="filter-option-inner-inner">
+                    @ButtonText
+                </div>
+            </div>
+        </div>
+    </button>
+    <div class="dropdown-menu @(isActive? "show" : "")" role="combobox" tabindex="-1">
+        @if (DisplaySearch)
+        {
+            <div class="bs-searchbox">
+                <input type="text" class="form-control" autocomplete="off" role="textbox" aria-label="Search" placeholder="Search" @oninput="PerformSearch">
+            </div>
+        }
+        <div class="inner show" role="listbox" aria-expanded="false" tabindex="-1">
+            <ul class="dropdown-menu inner show">
+
+                @foreach (var item in FilteredOptions)
+                {
+                    <li>
+                        <a role="option" class="dropdown-item @(item.Selected ? "selected" : "") @(!IsMultiple && item.Selected ? "active" : "")" aria-disabled="false" tabindex="0" aria-selected="false" @onclick="@(() => HandleOptionClick(item))">
+                            @if (IsMultiple)
+                            {
+                                <span class="fa bs-ok-default check-mark"></span>
+                            }
+                            <span class="text">@item.Text</span>
+                        </a>
+                    </li>
+                }
+
+                @if (!string.IsNullOrEmpty(searchTerm) && !FilteredOptions.Any())
+                {
+                    <li class="no-results">No matching results</li>
+                }
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+@if (ValidationFor != null)
+{
+    <ValidationMessage For="@ValidationFor" />
+}
