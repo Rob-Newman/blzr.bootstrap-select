@@ -6,6 +6,9 @@ There is no dependency with JavaScript.
 
 ## Getting Setup
 
+### 1. Add Reference
+Adding a project reference to the `Blzr.BootstrapSelect` library
+
 ### 2. Add Imports
 Add the following to your *_Imports.razor*
 
