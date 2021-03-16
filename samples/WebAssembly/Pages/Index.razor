@@ -59,6 +59,8 @@
                  TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" Label="Static" />
 <BootstrapSelect Id="selected-text-format-count" SelectedTextFormat="SelectedTextFormats.Count" TItem="Country" Data="@countries"
                  TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" Label="Count" />
+<BootstrapSelect Id="selected-text-format-count-greater" SelectedTextFormat="SelectedTextFormats.CountGreaterThan" SelectedTextFormatCount="2" TItem="Country" Data="@countries"
+                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" Label="Count Greater Than" />
 
 
 @code {

@@ -17,6 +17,7 @@
     {
         Values,
         Count,
-        Static
+        Static,
+        CountGreaterThan
     }
 }

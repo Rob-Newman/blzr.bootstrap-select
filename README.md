@@ -61,7 +61,8 @@ The following system wide defaults can be configured as part of the service regi
 - `SearchPlaceholderText` (Default: `"Search"`) - The placeholder text displayed in the search box 
 - `SearchNotFoundText` (Default: `"No matching results"`) - The text displayed if no options match a search term
 - `DelayValueChangedCallUntilClose` (Default: `false`) - For multi's only, whether to delay calling ValueChanged until after the select is closed (default will fire after each option is selected/deselected)
-- `SelectedTextFormat` (Default: `SelectedTextFormats.Values`) - Specifies how the selection is displayed with a multi select. `values` displays a list of the selected options (separated by a ,). `static` simply displays the select element's placeholder text. `count` displays the total number of selected options
+- `SelectedTextFormat` (Default: `SelectedTextFormats.Values`) - Specifies how the selection is displayed with a multi select. `Values` displays a list of the selected options (separated by a ,). `Static` simply displays the select element's placeholder text. `Count` displays the total number of selected options.  `CountGreaterThan` behaves like `Values` until the number of selected options is greater than `SelectedTextFormatCount`
+- `SelectedTextFormatCount` (Default: `0`) - If `SelectedTextFormat` is `CountGreaterThan`, ths is the number if options that must be selected until the message is displayed
 - `MultiSelectedText` (Default: `"{0} of {1} selected"`) - Specifies the text to display when the `SelectedTextFormat` is `count`. `{0}` is replaced with the number of selected items. `{1}` is replaced with the total number of options  
 - `ShowPlaceholder` (Default: `false`) - For singles only, determines if the placeholder text should be displayed
 - `MultiPlaceholderText` (Default: `"Nothing selected"`) - The text to display as the placeholder for multi's
@@ -76,7 +77,8 @@ builder.Services.AddBootstrapSelect(defaults =>
                     defaults.ShowSearchThreshold = 10;
                     defaults.SearchNotFoundText = "Can't find any";
                     defaults.DelayValueChangedCallUntilClose = true;
-                    defaults.SelectedTextFormat = SelectedTextFormats.Count;
+                    defaults.SelectedTextFormat = SelectedTextFormats.CountGreaterThan;
+                    defaults.SelectedTextFormatCount = 2;
                     defaults.MultiSelectedText = "{0} selected";
                     defaults.ShowPlaceholder = true;
                     defaults.MultiPlaceholderText = "Pick some";
@@ -130,7 +132,8 @@ builder.Services.AddBootstrapSelect(defaults =>
 - `ShowSearch` (Optional. Default: Uses system wide Defaults) - Determines if the search box should be displayed. When true, adds a search box to the top of the drop down (works in conjunction with `ShowSearchThreshold`)
 - `ShowSearchThreshold` (Optional. Default: Uses system wide Defaults) - The threshold to determine the number of options that must exists before the search box is displayed
 - `DelayValueChangedCallUntilClose` (Optional. Default: Uses system wide Defaults) - For multi's only, whether to delay calling ValueChanged until after the select is closed (default will fire after each option is selected/deselected)
-- `SelectedTextFormat` (Optional. Default: Uses system wide Defaults) - Specifies how the selection is displayed with a multi select. `values` displays a list of the selected options (separated by a ,). `static` simply displays the select element's placeholder text. `count` displays the total number of selected options
+- `SelectedTextFormat` (Optional. Default: Uses system wide Defaults) - Specifies how the selection is displayed with a multi select. `Values` displays a list of the selected options (separated by a ,). `Static` simply displays the select element's placeholder text. `Count` displays the total number of selected options.  `CountGreaterThan` behaves like `Values` until the number of selected options is greater than `SelectedTextFormatCount`
+- `SelectedTextFormatCount` (Optional. Default: Uses system wide Defaults) - If `SelectedTextFormat` is `CountGreaterThan`, ths is the number if options that must be selected until the message is displayed
 - `ShowPlaceholder` (Optional. Default: Uses system wide Defaults) - For singles only, determines if the placeholder text should be displayed
 - `PlaceholderText` (Optional. Default: Uses system wide Defaults) - The placeholder text
 - `Width` (Optional) - If supplied, will be used to add a width to the element

@@ -24,7 +24,8 @@ namespace WebAssembly
             //        defaults.ShowSearchThreshold = 10;
             //        defaults.SearchNotFoundText = "Can't find any";
             //        defaults.DelayValueChangedCallUntilClose = true;
-            //        defaults.SelectedTextFormat = SelectedTextFormats.Count;
+            //        defaults.SelectedTextFormat = SelectedTextFormats.CountGreaterThan;
+            //        defaults.SelectedTextFormatCount = 2;
             //        defaults.MultiSelectedText = "{0} selected";
             //        defaults.ShowPlaceholder = true;
             //        defaults.MultiPlaceholderText = "Pick some";

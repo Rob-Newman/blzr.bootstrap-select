@@ -36,5 +36,7 @@ namespace Blzr.BootstrapSelect
         public bool DelayValueChangedCallUntilClose { get; set; } = false;
 
         public SelectedTextFormats SelectedTextFormat { get; set; } = SelectedTextFormats.Values;
+
+        public int SelectedTextFormatCount { get; set; } = 0;
     }
 }

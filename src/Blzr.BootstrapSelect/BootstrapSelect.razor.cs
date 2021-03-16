@@ -30,6 +30,8 @@ namespace Blzr.BootstrapSelect
 
         private SelectedTextFormats? selectedTextFormat;
 
+        private int? selectedTextFormatCount;
+
         private bool? delayValueChangedCallUntilClose;
 
         #endregion
@@ -82,6 +84,13 @@ namespace Blzr.BootstrapSelect
             set { selectedTextFormat = value; }
         }
 
+        [Parameter]
+        public int? SelectedTextFormatCount
+        {
+            get { return selectedTextFormatCount.GetValueOrDefault(Defaults.SelectedTextFormatCount); }
+            set { selectedTextFormatCount = value; }
+        }
+
         [Parameter] public bool? ShowPlaceholder 
         {
             get { return showPlaceholder.GetValueOrDefault(Defaults.ShowPlaceholder); }
@@ -119,7 +128,10 @@ namespace Blzr.BootstrapSelect
                         return string.IsNullOrEmpty(PlaceholderText) ? Defaults.MultiPlaceholderText : PlaceholderText;
                     }
 
-                    return SelectedTextFormat.Value == SelectedTextFormats.Count ? string.Format(Defaults.MultiSelectedText, SelectedOptions.Count(), options.Count) : string.Join(", ", SelectedOptions.Select(x => x.Text));
+                    return SelectedTextFormat.Value == SelectedTextFormats.Count || 
+                            (SelectedTextFormat.Value == SelectedTextFormats.CountGreaterThan && SelectedOptions.Count() > SelectedTextFormatCount) 
+                        ? string.Format(Defaults.MultiSelectedText, SelectedOptions.Count(), options.Count) 
+                        : string.Join(", ", SelectedOptions.Select(x => x.Text));
                 }
 
                 if (ShowPlaceholder.Value && !SelectedOptions.Any())
