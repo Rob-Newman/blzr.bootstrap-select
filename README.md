@@ -6,7 +6,7 @@ There is no dependency with JavaScript.
 
 ## Getting Setup
 
-Adding a project reference to the `Blzr.BootstrapSelect` library
+Add a project reference to the `Blzr.BootstrapSelect` library
 
 ### 1. Register Services
 You will need to register the Blzr.BootstrapSelect service in your application
