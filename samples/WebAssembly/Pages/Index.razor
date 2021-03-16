@@ -4,7 +4,7 @@
 
 <h2>Basic</h2>
 <BootstrapSelect Id="basic" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
-                 TType="string" ShowSearch="false" />
+                 TType="string" />
 
 <h2>Basic With Opt Groups</h2>
 <BootstrapSelect Id="basic" TItem="Country" Data="@countries.OrderBy(x => x.Region)" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
@@ -61,6 +61,16 @@
                  TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" Label="Count" />
 <BootstrapSelect Id="selected-text-format-count-greater" SelectedTextFormat="SelectedTextFormats.CountGreaterThan" SelectedTextFormatCount="2" TItem="Country" Data="@countries"
                  TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" Label="Count Greater Than" />
+
+@*<h2>Button Styling</h2>
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" CssClass="btn-primary"/>*@
+
+<h2>Width</h2>
+<BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                    TType="string" Width="250px" Label="250px"/>
+<BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                 TType="string" Width="75%" Label="75%" />
 
 
 @code {
