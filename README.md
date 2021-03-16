@@ -37,13 +37,13 @@ Add the following line to the `head` tag of your `_Host.cshtml` (Blazor Server a
 
 We ship both minified and unminified CSS.
 
-For minifed use:
+For minified use:
 
 ```HTML
 <link href="_content/Blzr.BootstrapSelect/blzr-bootstrap-select.min.css" rel="stylesheet" />
 ```
 
-For unminifed use:
+For unminified use:
 ```HTML
 <link href="_content/Blzr.BootstrapSelect/blzr-bootstrap-select.css" rel="stylesheet" />
 ```
@@ -57,10 +57,10 @@ Presumably, you already have bootstrap css referenced in your project. If not, u
 The following system wide defaults can be configured as part of the service registration 
 
 - `ShowSearch` (Default: `false`) - Determines if the search box should be displayed. When true, adds a search box to the top of the drop down (works in conjunction with `ShowSearchThreshold`)
-- `ShowSearchThreshold` (Default: `0`) - The threshold to determine the number of options that must exists before the seacrh box is displayed
+- `ShowSearchThreshold` (Default: `0`) - The threshold to determine the number of options that must exists before the search box is displayed
 - `SearchPlaceholderText` (Default: `Search`) - The placeholder text displayed in the search box 
 - `SearchNotFoundText` (Default: `No matching results`) - The text displayed if no options match a search term
-- `DelayValueChangedCallUntilClose` (Default: `false`) - For multi's only, whether to delay callling ValueChanged until after the select is closed (default will fire after each option is selected/deslected)
+- `DelayValueChangedCallUntilClose` (Default: `false`) - For multi's only, whether to delay calling ValueChanged until after the select is closed (default will fire after each option is selected/deselected)
 - `SelectedTextFormat` (Default: `values`) - Specifies how the selection is displayed with a multi select. `values` displays a list of the selected options (separated by a ,). `static` simply displays the select element's placeholder text. `count` displays the total number of selected options
 - `MultiSelectedText` (Default: `{0} of {1} selected`) - Specifies the text to display when the `SelectedTextFormat` is `count`. `{0}` is replaced with the number of selected items. `{1}` is replaced with the total number of options  
 - `ShowPlaceholder` (Default: `false`) - For singles only, determines if the placeholder text should be displayed
@@ -119,21 +119,22 @@ builder.Services.AddBootstrapSelect(defaults =>
 - `TItem` (Required) - The underlying type of the objects used in the Data collection
 - `TType` (Required) - The underlying type of the Value field.  Currently supported is: `string`, `int`, `IEnumerable<string>`, `IEnumerable<int>`
 - `Data` (Required) - The Data to use to build the drop down options from
-- `TextField` (Required) - The `Func` to select the Text value from the each item within `Data`
-- `ValueField` (Required) - The `Func` to select the Value value from the each item within `Data`
+- `TextField` (Required) - The `Func` to select the Text value from each item within `Data`
+- `ValueField` (Required) - The `Func` to select the Value value from each item within `Data`
+- `OptGroupField` (Optional) - The 'Func' to select the Opt Group value from each item within `Data`. If this is supplied, opt groups will be displayed, and its assumed that the `Data` will be sorted so that all items from the same opt group are positioned together  
 - `Id` (Optional) - Html Id to be added to the element
 - `Value` (Optional) - An initial value for the select.  Can be used for 2 way binding using `@bind-value`
 - `ValueChanged` (Optional) - An `EventCallback` to be called when the value changes 
-- `IsMultiple` (Optional. Default `false`) - Determiens if the select should be a single or multi
+- `IsMultiple` (Optional. Default `false`) - Determines if the select should be a single or multi
 - `ShowSearch` (Optional. Default: Uses system wide Defaults) - Determines if the search box should be displayed. When true, adds a search box to the top of the drop down (works in conjunction with `ShowSearchThreshold`)
-- `ShowSearchThreshold` (Optional. Default: Uses system wide Defaults) - The threshold to determine the number of options that must exists before the seacrh box is displayed
-- `DelayValueChangedCallUntilClose` (Optional. Default: Uses system wide Defaults) - For multi's only, whether to delay callling ValueChanged until after the select is closed (default will fire after each option is selected/deslected)
+- `ShowSearchThreshold` (Optional. Default: Uses system wide Defaults) - The threshold to determine the number of options that must exists before the search box is displayed
+- `DelayValueChangedCallUntilClose` (Optional. Default: Uses system wide Defaults) - For multi's only, whether to delay calling ValueChanged until after the select is closed (default will fire after each option is selected/deselected)
 - `SelectedTextFormat` (Optional. Default: Uses system wide Defaults) - Specifies how the selection is displayed with a multi select. `values` displays a list of the selected options (separated by a ,). `static` simply displays the select element's placeholder text. `count` displays the total number of selected options
 - `ShowPlaceholder` (Optional. Default: Uses system wide Defaults) - For singles only, determines if the placeholder text should be displayed
 - `PlaceholderText` (Optional. Default: Uses system wide Defaults) - The placeholder text
 - `Width` (Optional) - If supplied, will be used to add a width to the element
 - `CssClass` (Optional) - Additional classes to be added to the element
 - `Label` (Optional) - A label to added to the element
-- `ValidationFor` (Optional) - A `Expression` to privide the validation information. Can only be used if component is within an `EditForm`
+- `ValidationFor` (Optional) - A `Expression` to provide the validation information. Can only be used if component is within an `EditForm`
 
 See the code in the index page within samples for more examples

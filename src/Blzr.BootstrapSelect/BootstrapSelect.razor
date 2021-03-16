@@ -30,9 +30,21 @@
         }
         <div class="inner show" role="listbox" aria-expanded="false" tabindex="-1">
             <ul class="dropdown-menu inner show">
-
+                @{ var currentOptGroup = ""; var firstTime = true; }
                 @foreach (var item in FilteredOptions)
                 {
+                    if (ShowOptGroups && item.OptGroup != currentOptGroup)
+                    {
+                        if (!firstTime)
+                        { 
+                            <li class="dropdown-divider"></li>
+                        }
+                        <li class="dropdown-header">
+                            <span class="text">@item.OptGroup</span>
+                        </li>
+                        currentOptGroup = item.OptGroup;
+                        firstTime = false;
+                    }
                     <li>
                         <a role="option" class="dropdown-item @(item.Selected ? "selected" : "") @(!IsMultiple && item.Selected ? "active" : "")" aria-disabled="false" tabindex="0" aria-selected="false" @onclick="@(() => HandleOptionClick(item))">
                             @if (IsMultiple)

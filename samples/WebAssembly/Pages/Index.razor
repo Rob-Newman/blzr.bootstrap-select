@@ -4,7 +4,11 @@
 
 <h2>Basic</h2>
 <BootstrapSelect Id="basic" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
-                 TType="string" ShowSearch="false"/>
+                 TType="string" ShowSearch="false" />
+
+<h2>Basic With Opt Groups</h2>
+<BootstrapSelect Id="basic" TItem="Country" Data="@countries.OrderBy(x => x.Region)" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                 OptGroupField="@((item) => item.Region)" TType="string" ShowSearch="false" />
 
 <h2>Multi</h2>
 <BootstrapSelect Id="multi-basic" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
@@ -26,7 +30,7 @@
 
 <h2>Value Changed Callback</h2>
 <BootstrapSelect Id="basic" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
-                 TType="string" Value="@basicValue" ValueChanged="@OnValueChanged"/>
+                 TType="string" Value="@basicValue" ValueChanged="@OnValueChanged" />
 <p>Callback Count: @callBackCount, Selected Value: @basicValue</p>
 
 <h2>Validation</h2>
@@ -43,18 +47,18 @@
                  ValueField="@((item) => item.Id.ToString())" TType="string" />
 
 <h2>Placeholder Text</h2>
-<BootstrapSelect Id="placeholder-single" ShowPlaceholder="true" PlaceholderText="Choose one the following..." TItem="Country" Data="@countries" 
-                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" TType="string" Label="Single"/>
+<BootstrapSelect Id="placeholder-single" ShowPlaceholder="true" PlaceholderText="Choose one the following..." TItem="Country" Data="@countries"
+                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" TType="string" Label="Single" />
 <BootstrapSelect Id="placeholder-multi" ShowPlaceholder="true" PlaceholderText="Choose from the following..." TItem="Country" Data="@countries"
-                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<string>" Label="Multi"/>
+                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<string>" Label="Multi" />
 
 <h2>Selected Text Format</h2>
 <BootstrapSelect Id="selected-text-format-values" SelectedTextFormat="SelectedTextFormats.Values" TItem="Country" Data="@countries"
-                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" Label="Values"/>
+                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" Label="Values" />
 <BootstrapSelect Id="selected-text-format-static" SelectedTextFormat="SelectedTextFormats.Static" TItem="Country" Data="@countries"
-                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" Label="Static"/>
+                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" Label="Static" />
 <BootstrapSelect Id="selected-text-format-count" SelectedTextFormat="SelectedTextFormats.Count" TItem="Country" Data="@countries"
-                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" Label="Count"/>
+                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" Label="Count" />
 
 
 @code {
@@ -71,11 +75,11 @@
     protected override void OnInitialized()
     {
         countries = new List<Country> {
-            new Country { Id = 1, Name = "United Kingdom" },
-            new Country { Id = 2, Name = "United States" },
-            new Country { Id = 3, Name = "Germany" },
-            new Country { Id = 4, Name = "France" },
-            new Country { Id = 5, Name = "China" }
+            new Country { Id = 1, Name = "United Kingdom", Region = "Europe" },
+            new Country { Id = 2, Name = "United States", Region = "America" },
+            new Country { Id = 3, Name = "Germany", Region = "Europe" },
+            new Country { Id = 4, Name = "France", Region = "Europe" },
+            new Country { Id = 5, Name = "China", Region = "Asia" }
         };
 
         model1 = new MyModel
@@ -92,6 +96,8 @@
         public int Id { get; set; }
 
         public string Name { get; set; }
+
+        public string Region { get; set; }
     }
 
     public class MyModel
@@ -117,7 +123,7 @@
     {
     }
 
-    private async Task OnValueChanged(string newValue)
+    private void OnValueChanged(string newValue)
     {
         basicValue = newValue;
         callBackCount++;

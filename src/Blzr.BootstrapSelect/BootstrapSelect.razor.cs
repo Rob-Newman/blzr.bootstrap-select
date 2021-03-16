@@ -45,6 +45,8 @@ namespace Blzr.BootstrapSelect
         [Parameter] public Func<TItem, string> TextField { get; set; }
 
         [Parameter] public Func<TItem, string> ValueField { get; set; }
+        
+        [Parameter] public Func<TItem, string> OptGroupField { get; set; }
 
         [Parameter] public TType Value { get; set; }
 
@@ -104,6 +106,8 @@ namespace Blzr.BootstrapSelect
 
         protected string FieldCssClasses => CascadedEditContext?.FieldCssClass(fieldIdentifier) ?? "";
 
+        protected bool ShowOptGroups => OptGroupField != null;
+
         protected string ButtonText
         {
             get
@@ -150,7 +154,8 @@ namespace Blzr.BootstrapSelect
                 {
                     var value = ValueField?.Invoke(item);
                     var text = TextField?.Invoke(item);
-                    options.Add(new BootstrapSelectOption { Value = value, Text = text, Selected = valueArray.Any(x => x == value) });
+                    var optGroup = OptGroupField?.Invoke(item);
+                    options.Add(new BootstrapSelectOption { Value = value, Text = text, OptGroup = optGroup, Selected = valueArray.Any(x => x == value) });
                 }
             }
 
