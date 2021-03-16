@@ -46,5 +46,11 @@ namespace Blzr.BootstrapSelect
         public string MaxSelectionsText { get; set; } = "Limit reached ({0} items max)";
 
         public SearchStyles SearchStyle { get; set; } = SearchStyles.Contains;
+
+        public bool ShowActions { get; set; } = false;
+
+        public string SelectAllText { get; set; } = "Select All";
+        
+        public string DeselectAllText { get; set; } = "Deselect All";
     }
 }

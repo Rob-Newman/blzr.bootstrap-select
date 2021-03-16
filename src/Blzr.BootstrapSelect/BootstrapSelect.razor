@@ -22,6 +22,16 @@
         </div>
     </button>
     <div class="dropdown-menu @(isActive? "show" : "")" role="combobox" tabindex="-1">
+        @if (IsMultiple && ShowActions.Value)
+        {  
+            <div class="bs-actionsbox">
+                <div class="btn-group btn-group-sm btn-block">
+                    <button type="button" class="btn btn-light" @onclick="SelectAll">@Defaults.SelectAllText</button>
+                    <button type="button" class="btn btn-light" @onclick="DeselectAll">@Defaults.DeselectAllText</button>
+                </div>
+            </div>
+        }
+
         @if (DisplaySearch)
         {
             <div class="bs-searchbox">

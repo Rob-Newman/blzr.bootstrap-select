@@ -43,6 +43,8 @@ namespace Blzr.BootstrapSelect
 
         private SearchStyles? searchStyle;
 
+        private bool? showActions;
+
         #endregion
 
         #region Properties
@@ -127,6 +129,12 @@ namespace Blzr.BootstrapSelect
         {
             get { return searchStyle.GetValueOrDefault(Defaults.SearchStyle); }
             set { searchStyle = value; }
+        }
+
+        [Parameter] public bool? ShowActions
+        {
+            get { return showActions.GetValueOrDefault(Defaults.ShowActions); }
+            set { showActions = value; }
         }
 
         protected IList<BootstrapSelectOption> FilteredOptions 
@@ -347,6 +355,29 @@ namespace Blzr.BootstrapSelect
         {
             showMaxSelectedMessage = false;
             StateHasChanged();
+        }
+
+        private void SelectAll()
+        {
+            if (MaxSelections.HasValue && FilteredOptions.Count() > MaxSelections.Value)
+            {
+                ShowMaxSelectionMessage();
+            }
+            else
+            {
+                foreach (var option in FilteredOptions)
+                {
+                    option.Selected = true;
+                }
+            }
+        }
+
+        private void DeselectAll()
+        {
+            foreach (var option in FilteredOptions)
+            {
+                option.Selected = false;
+            }
         }
 
         #endregion

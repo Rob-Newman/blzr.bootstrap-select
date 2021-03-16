@@ -71,6 +71,9 @@ The following system wide defaults can be configured as part of the service regi
 - `ShowTick` (Default: `false`) - Whether to show the checkmark on singles 
 - `MaxSelectionsText` (Default: `"Limit reached ({0} items max)"`) - The text to display if the max number s selections is met. `{0}` is replaced with the `MaxSelections` parameter
 - `SearchStyle` (Default: `SearchStyles.Contains`) - When set to `SearchStyles.Contains`, searching will reveal options that contain the searched text.  When set to `SearchStyles.StartsWith`, searching will reveal options that start with the searched text
+- `ShowActions` (Default: `false`) - For multi's only. When set, adds two buttons to the top of the dropdown menu (Select All and Deselect All)
+- `SelectAllText` (Default: `"Select All"`) - The text to display on the select all button 
+- `DeselectAllText` (Default: `"Deselect All"`) - The text to display on the deselect all button 
 
 ### Example
 ```csharp
@@ -91,6 +94,9 @@ builder.Services.AddBootstrapSelect(defaults =>
                     defaults.ShowTick = true;
                     defaults.MaxSelectionsText = "Too Many ({0} is max!)";
                     defaults.SearchStyle = SearchStyles.StartsWith;
+                    defaults.ShowActions = true;
+                    defaults.SelectAllText = "All of them";
+                    defaults.DeselectAllText = "None of them";
                 });
 ```
 
@@ -151,5 +157,6 @@ builder.Services.AddBootstrapSelect(defaults =>
 - `ShowTick` (Optional. Default: Uses system wide Defaults) - Whether to show the checkmark on singles 
 - `MaxSelections` (Optional) - For multi's only, if supplied, limit the number of options that can be selected
 - `SearchStyle` (Optional. Default: Uses system wide Defaults) - When set to `SearchStyles.Contains`, searching will reveal options that contain the searched text.  When set to `SearchStyles.StartsWith`, searching will reveal options that start with the searched text
+- `ShowActions` (Optional. Default: Uses system wide Defaults) - For multi's only. When set, adds two buttons to the top of the dropdown menu (Select All and Deselect All)
 
 See the code in the index page within samples for more examples
