@@ -41,6 +41,8 @@ namespace Blzr.BootstrapSelect
 
         private bool showMaxSelectedMessage = false;
 
+        private SearchStyles? searchStyle;
+
         #endregion
 
         #region Properties
@@ -91,8 +93,7 @@ namespace Blzr.BootstrapSelect
             set { selectedTextFormat = value; }
         }
 
-        [Parameter]
-        public int? SelectedTextFormatCount
+        [Parameter] public int? SelectedTextFormatCount
         {
             get { return selectedTextFormatCount.GetValueOrDefault(Defaults.SelectedTextFormatCount); }
             set { selectedTextFormatCount = value; }
@@ -104,8 +105,7 @@ namespace Blzr.BootstrapSelect
             set { showPlaceholder = value; }
         }
 
-        [Parameter]
-        public bool? ShowTick
+        [Parameter] public bool? ShowTick
         {
             get { return showTick.GetValueOrDefault(Defaults.ShowTick); }
             set { showTick = value; }
@@ -123,7 +123,23 @@ namespace Blzr.BootstrapSelect
 
         [Parameter] public Expression<Func<TType>> ValidationFor { get; set; }
 
-        protected IList<BootstrapSelectOption> FilteredOptions => DisplaySearch && !string.IsNullOrEmpty(searchTerm) ? options.Where(x => x.Text.ToLower().Contains(searchTerm.ToLower())).ToList() : options;
+        [Parameter] public SearchStyles? SearchStyle
+        {
+            get { return searchStyle.GetValueOrDefault(Defaults.SearchStyle); }
+            set { searchStyle = value; }
+        }
+
+        protected IList<BootstrapSelectOption> FilteredOptions 
+        {
+            get 
+            {
+                return DisplaySearch && !string.IsNullOrEmpty(searchTerm) 
+                    ? SearchStyle == SearchStyles.Contains 
+                        ? options.Where(x => x.Text.ToLower().Contains(searchTerm.ToLower())).ToList() 
+                        : options.Where(x => x.Text.ToLower().StartsWith(searchTerm.ToLower())).ToList()
+                    : options;
+            }
+        } 
 
         protected IEnumerable<BootstrapSelectOption> SelectedOptions => options.Where(x => x.Selected);
 

@@ -20,4 +20,10 @@
         Static,
         CountGreaterThan
     }
+
+    public enum SearchStyles
+    { 
+        Contains,
+        StartsWith
+    }
 }

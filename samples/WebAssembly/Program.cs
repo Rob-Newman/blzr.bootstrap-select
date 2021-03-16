@@ -16,24 +16,25 @@ namespace WebAssembly
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            //builder.Services.AddBootstrapSelect();
-            builder.Services.AddBootstrapSelect(defaults =>
-                {
-                    defaults.ShowSearch = true;
-                    defaults.SearchPlaceholderText = "Find";
-                    defaults.ShowSearchThreshold = 10;
-                    defaults.SearchNotFoundText = "Can't find any";
-                    defaults.DelayValueChangedCallUntilClose = true;
-                    defaults.SelectedTextFormat = SelectedTextFormats.CountGreaterThan;
-                    defaults.SelectedTextFormatCount = 2;
-                    defaults.MultiSelectedText = "{0} selected";
-                    defaults.MultiSeparator = "|";
-                    defaults.ShowPlaceholder = true;
-                    defaults.MultiPlaceholderText = "Pick some";
-                    defaults.SinglePlaceholderText = "Pick one";
-                    defaults.ShowTick = true;
-                    defaults.MaxSelectionsText = "Too Many ({0} is max!)";
-                });
+            builder.Services.AddBootstrapSelect();
+            //builder.Services.AddBootstrapSelect(defaults =>
+            //    {
+            //        defaults.ShowSearch = true;
+            //        defaults.SearchPlaceholderText = "Find";
+            //        defaults.ShowSearchThreshold = 10;
+            //        defaults.SearchNotFoundText = "Can't find any";
+            //        defaults.DelayValueChangedCallUntilClose = true;
+            //        defaults.SelectedTextFormat = SelectedTextFormats.CountGreaterThan;
+            //        defaults.SelectedTextFormatCount = 2;
+            //        defaults.MultiSelectedText = "{0} selected";
+            //        defaults.MultiSeparator = "|";
+            //        defaults.ShowPlaceholder = true;
+            //        defaults.MultiPlaceholderText = "Pick some";
+            //        defaults.SinglePlaceholderText = "Pick one";
+            //        defaults.ShowTick = true;
+            //        defaults.MaxSelectionsText = "Too Many ({0} is max!)";
+            //        defaults.SearchStyle = SearchStyles.StartsWith;
+            //    });
 
             await builder.Build().RunAsync();
         }

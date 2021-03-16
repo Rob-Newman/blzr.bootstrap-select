@@ -44,7 +44,9 @@
 
 <h2>Live Search</h2>
 <BootstrapSelect Id="live-search" ShowSearch="true" TItem="Country" Data="@countries" TextField="@((item) => item.Name)"
-                 ValueField="@((item) => item.Id.ToString())" TType="string" />
+                 ValueField="@((item) => item.Id.ToString())" TType="string" Label="Contains"/>
+<BootstrapSelect Id="live-search-starts" ShowSearch="true" TItem="Country" Data="@countries" TextField="@((item) => item.Name)"
+                 ValueField="@((item) => item.Id.ToString())" TType="string" SearchStyle="@SearchStyles.StartsWith" Label="StartsWith" />
 
 <h2>Max Selections</h2>
 <BootstrapSelect Id="multi-basic" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
