@@ -90,7 +90,8 @@ builder.Services.AddBootstrapSelect(defaults =>
 ```csharp
 @page "/"
 
-<BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" TType="string" />
+<BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" 
+                 ValueField="@((item) => item.Id.ToString())" TType="string" />
 
 @code {
     private IList<Country> countries;
