@@ -122,7 +122,7 @@ builder.Services.AddBootstrapSelect(defaults =>
 - `Data` (Required) - The Data to use to build the drop down options from
 - `TextField` (Required) - The `Func` to select the Text value from each item within `Data`
 - `ValueField` (Required) - The `Func` to select the Value value from each item within `Data`
-- `OptGroupField` (Optional) - The 'Func' to select the Opt Group value from each item within `Data`. If this is supplied, opt groups will be displayed, and its assumed that the `Data` will be sorted so that all items from the same opt group are positioned together  
+- `OptGroupField` (Optional) - The `Func` to select the Opt Group value from each item within `Data`. If this is supplied, opt groups will be displayed, and its assumed that the `Data` will be sorted so that all items from the same opt group are positioned together  
 - `Id` (Optional) - Html Id to be added to the element
 - `Value` (Optional) - An initial value for the select.  Can be used for 2 way binding using `@bind-value`
 - `ValueChanged` (Optional) - An `EventCallback` to be called when the value changes 
