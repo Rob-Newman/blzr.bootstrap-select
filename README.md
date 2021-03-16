@@ -4,6 +4,8 @@ This Blazor bootstap select component is inspired by the js [bootstrap-select](h
 
 There is no dependency with JavaScript.
 
+<img alt="Screenshot of component in action" src="screenshot.gif" data-canonical-src="screenshot.gif" width="800" />
+
 ## Getting Setup
 
 Add a project reference to the `Blzr.BootstrapSelect` library
