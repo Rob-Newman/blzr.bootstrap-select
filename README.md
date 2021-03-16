@@ -58,14 +58,14 @@ The following system wide defaults can be configured as part of the service regi
 
 - `ShowSearch` (Default: `false`) - Determines if the search box should be displayed. When true, adds a search box to the top of the drop down (works in conjunction with `ShowSearchThreshold`)
 - `ShowSearchThreshold` (Default: `0`) - The threshold to determine the number of options that must exists before the seacrh box is displayed
-- `SearchPlaceholderText` (Default: `Search`) - The placeholder text displayed in the search box 
-- `SearchNotFoundText` (Default: `No matching results`) - The text displayed if no options match a search term
+- `SearchPlaceholderText` (Default: `"Search"`) - The placeholder text displayed in the search box 
+- `SearchNotFoundText` (Default: `"No matching results"`) - The text displayed if no options match a search term
 - `DelayValueChangedCallUntilClose` (Default: `false`) - For multi's only, whether to delay callling ValueChanged until after the select is closed (default will fire after each option is selected/deslected)
-- `SelectedTextFormat` (Default: `values`) - Specifies how the selection is displayed with a multi select. `values` displays a list of the selected options (separated by a ,). `static` simply displays the select element's placeholder text. `count` displays the total number of selected options
-- `MultiSelectedText` (Default: `{0} of {1} selected`) - Specifies the text to display when the `SelectedTextFormat` is `count`. `{0}` is replaced with the number of selected items. `{1}` is replaced with the total number of options  
+- `SelectedTextFormat` (Default: `SelectedTextFormats.Values`) - Specifies how the selection is displayed with a multi select. `values` displays a list of the selected options (separated by a ,). `static` simply displays the select element's placeholder text. `count` displays the total number of selected options
+- `MultiSelectedText` (Default: `"{0} of {1} selected"`) - Specifies the text to display when the `SelectedTextFormat` is `count`. `{0}` is replaced with the number of selected items. `{1}` is replaced with the total number of options  
 - `ShowPlaceholder` (Default: `false`) - For singles only, determines if the placeholder text should be displayed
-- `MultiPlaceholderText` (Default: `Nothing selected`) - The text to display as the placeholder for multi's
-- `SinglePlaceholderText` (Default: `Select...`) - The text to display as the placeholder for singles
+- `MultiPlaceholderText` (Default: `"Nothing selected"`) - The text to display as the placeholder for multi's
+- `SinglePlaceholderText` (Default: `"Select..."`) - The text to display as the placeholder for singles
 
 ### Example
 ```csharp
