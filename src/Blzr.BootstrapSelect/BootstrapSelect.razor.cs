@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using System.Timers;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
@@ -28,11 +29,17 @@ namespace Blzr.BootstrapSelect
 
         private bool? showPlaceholder;
 
+        private bool? showTick;
+
         private SelectedTextFormats? selectedTextFormat;
 
         private int? selectedTextFormatCount;
 
         private bool? delayValueChangedCallUntilClose;
+
+        private Timer countdown;
+
+        private bool showMaxSelectedMessage = false;
 
         #endregion
 
@@ -97,6 +104,13 @@ namespace Blzr.BootstrapSelect
             set { showPlaceholder = value; }
         }
 
+        [Parameter]
+        public bool? ShowTick
+        {
+            get { return showTick.GetValueOrDefault(Defaults.ShowTick); }
+            set { showTick = value; }
+        }
+
         [Parameter] public string PlaceholderText { get; set; }
 
         [Parameter] public string Id { get; set; }
@@ -104,6 +118,8 @@ namespace Blzr.BootstrapSelect
         [Parameter] public string CssClass { get; set; }
 
         [Parameter] public string Label { get; set; }
+
+        [Parameter] public int? MaxSelections { get; set; }
 
         [Parameter] public Expression<Func<TType>> ValidationFor { get; set; }
 
@@ -131,7 +147,7 @@ namespace Blzr.BootstrapSelect
                     return SelectedTextFormat.Value == SelectedTextFormats.Count || 
                             (SelectedTextFormat.Value == SelectedTextFormats.CountGreaterThan && SelectedOptions.Count() > SelectedTextFormatCount) 
                         ? string.Format(Defaults.MultiSelectedText, SelectedOptions.Count(), options.Count) 
-                        : string.Join(", ", SelectedOptions.Select(x => x.Text));
+                        : string.Join($"{Defaults.MultiSeparator}", SelectedOptions.Select(x => x.Text));
                 }
 
                 if (ShowPlaceholder.Value && !SelectedOptions.Any())
@@ -202,6 +218,12 @@ namespace Blzr.BootstrapSelect
             }
 
             options.First(x => x.Value == value.Value).ToggleSelected();
+
+            if (IsMultiple && MaxSelections.HasValue && SelectedOptions.Count() > MaxSelections.Value)
+            {
+                options.First(x => x.Value == value.Value).ToggleSelected();
+                ShowMaxSelectionMessage();
+            }
 
             Value = SetValue();
 
@@ -276,6 +298,39 @@ namespace Blzr.BootstrapSelect
                 // Not currently supported
                 throw new NotImplementedException();
             }
+        }
+
+        private void StartCountdown() 
+        {
+            if (countdown == null)
+            {
+                countdown = new Timer(1500);
+                countdown.Elapsed += HideMaxSelectionMessage;
+                countdown.AutoReset = false;
+            }
+
+            if (countdown.Enabled)
+            {
+                countdown.Stop();
+                countdown.Start();
+            }
+            else 
+            {
+                countdown.Start();
+            }
+        }
+
+        private void ShowMaxSelectionMessage()
+        {
+            showMaxSelectedMessage = true;
+            StartCountdown();
+            StateHasChanged();
+        }
+
+        private void HideMaxSelectionMessage(object source, ElapsedEventArgs args)
+        {
+            showMaxSelectedMessage = false;
+            StateHasChanged();
         }
 
         #endregion

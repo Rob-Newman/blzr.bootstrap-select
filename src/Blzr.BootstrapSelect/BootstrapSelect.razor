@@ -47,7 +47,7 @@
                     }
                     <li>
                         <a role="option" class="dropdown-item @(item.Selected ? "selected" : "") @(!IsMultiple && item.Selected ? "active" : "")" aria-disabled="false" tabindex="0" aria-selected="false" @onclick="@(() => HandleOptionClick(item))">
-                            @if (IsMultiple)
+                            @if (IsMultiple || ShowTick.Value)
                             {
                                 <span class="fa bs-ok-default check-mark"></span>
                             }
@@ -63,6 +63,12 @@
 
             </ul>
         </div>
+        @if (showMaxSelectedMessage)
+        {
+            <div class="notify">
+                <div>@string.Format(Defaults.MaxSelectionsText, MaxSelections)</div>
+            </div>
+        }
     </div>
 </div>
 

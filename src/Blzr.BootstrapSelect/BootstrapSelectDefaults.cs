@@ -27,6 +27,8 @@ namespace Blzr.BootstrapSelect
 
         public string MultiSelectedText { get; set; } = "{0} of {1} selected";
 
+        public string MultiSeparator { get; set; } = ", ";
+
         public bool ShowSearch { get; set; } = false;
 
         public int ShowSearchThreshold { get; set; } = 0;
@@ -38,5 +40,9 @@ namespace Blzr.BootstrapSelect
         public SelectedTextFormats SelectedTextFormat { get; set; } = SelectedTextFormats.Values;
 
         public int SelectedTextFormatCount { get; set; } = 0;
+
+        public bool ShowTick { get; set; } = false;
+
+        public string MaxSelectionsText { get; set; } = "Limit reached ({0} items max)";
     }
 }
