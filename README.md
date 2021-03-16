@@ -63,15 +63,15 @@ The following system wide defaults can be configured as part of the service regi
 - `SearchPlaceholderText` (Default: `"Search"`) - The placeholder text displayed in the search box 
 - `SearchNotFoundText` (Default: `"No matching results"`) - The text displayed if no options match a search term
 - `DelayValueChangedCallUntilClose` (Default: `false`) - For multi's only, whether to delay calling ValueChanged until after the select is closed (default will fire after each option is selected/deselected)
-- `SelectedTextFormat` (Default: `SelectedTextFormats.Values`) - Specifies how the selection is displayed with a multi select. `Values` displays a list of the selected options (separated by a `MultiSeparator`). `Static` simply displays the select element's placeholder text. `Count` displays the total number of selected options.  `CountGreaterThan` behaves like `Values` until the number of selected options is greater than `SelectedTextFormatCount`
-- `SelectedTextFormatCount` (Default: `0`) - If `SelectedTextFormat` is `CountGreaterThan`, ths is the number if options that must be selected until the message is displayed
+- `SelectedTextFormat` (Default: `SelectedTextFormats.Values`) - Specifies how the selection is displayed with a multi select. `Values` displays a list of the selected options (separated by `MultiSeparator`). `Static` simply displays the select element's placeholder text. `Count` displays the total number of selected options.  `CountGreaterThan` behaves like `Values` until the number of selected options is greater than `SelectedTextFormatCount` where it then behaves like `Count`
+- `SelectedTextFormatCount` (Default: `0`) - If `SelectedTextFormat` is `CountGreaterThan`, ths is the number of options that must be selected for the `Count` format to be applied
 - `MultiSelectedText` (Default: `"{0} of {1} selected"`) - Specifies the text to display when the `SelectedTextFormat` is `count`. `{0}` is replaced with the number of selected items. `{1}` is replaced with the total number of options  
 - `MultiSeparator` (Default: `", "`) - The separator used for multi selected text when the format is `Values`
 - `ShowPlaceholder` (Default: `false`) - For singles only, determines if the placeholder text should be displayed
 - `MultiPlaceholderText` (Default: `"Nothing selected"`) - The text to display as the placeholder for multi's
 - `SinglePlaceholderText` (Default: `"Select..."`) - The text to display as the placeholder for singles
 - `ShowTick` (Default: `false`) - Whether to show the checkmark on singles 
-- `MaxSelectionsText` (Default: `"Limit reached ({0} items max)"`) - The text to display if the max number s selections is met. `{0}` is replaced with the `MaxSelections` parameter
+- `MaxSelectionsText` (Default: `"Limit reached ({0} items max)"`) - The text to display if the max number of selections is met. `{0}` is replaced with the `MaxSelections` parameter
 - `SearchStyle` (Default: `SearchStyles.Contains`) - When set to `SearchStyles.Contains`, searching will reveal options that contain the searched text.  When set to `SearchStyles.StartsWith`, searching will reveal options that start with the searched text
 - `ShowActions` (Default: `false`) - For multi's only. When set, adds two buttons to the top of the dropdown menu (Select All and Deselect All)
 - `SelectAllText` (Default: `"Select All"`) - The text to display on the select all button 
