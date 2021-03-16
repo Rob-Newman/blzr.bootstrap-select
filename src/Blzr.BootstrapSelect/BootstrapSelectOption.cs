@@ -12,7 +12,7 @@
         }
     }
 
-    public enum SelectedTextFormat
+    public enum SelectedTextFormats
     {
         Values,
         Count,

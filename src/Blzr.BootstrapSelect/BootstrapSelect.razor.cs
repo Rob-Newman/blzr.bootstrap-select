@@ -10,8 +10,36 @@ namespace Blzr.BootstrapSelect
 {
     public partial class BootstrapSelect<TItem, TType> : ComponentBase
     {
+        #region Fields
+
+        private bool isActive = false;
+
+        private readonly IList<BootstrapSelectOption> options = new List<BootstrapSelectOption>();
+
+        private string searchTerm;
+
+        private TType initialValue;
+
+        private FieldIdentifier fieldIdentifier;
+
+        private bool? showSearch;
+
+        private int? showSearchThreshold;
+
+        private bool? showPlaceholder;
+
+        private SelectedTextFormats? selectedTextFormat;
+
+        private bool? delayValueChangedCallUntilClose;
+
+        #endregion
+
+        #region Properties
+
         [CascadingParameter] private EditContext CascadedEditContext { get; set; }
 
+        [Inject] protected BootstrapSelectDefaults Defaults { get; set; }
+        
         [Parameter] public IEnumerable<TItem> Data { get; set; }
 
         [Parameter] public Func<TItem, string> TextField { get; set; }
@@ -26,17 +54,37 @@ namespace Blzr.BootstrapSelect
 
         [Parameter] public bool IsMultiple { get; set; }
 
-        [Parameter] public bool DelayValueChangedCallUntilClose { get; set; } = false;
+        [Parameter] public bool? DelayValueChangedCallUntilClose
+        {
+            get { return delayValueChangedCallUntilClose.GetValueOrDefault(Defaults.DelayValueChangedCallUntilClose); }
+            set { delayValueChangedCallUntilClose = value; }
+        }
 
         [Parameter] public string Width { get; set; }
 
-        [Parameter] public bool ShowSearch { get; set; } = false;
+        [Parameter] public bool? ShowSearch 
+        {
+            get { return showSearch.GetValueOrDefault(Defaults.ShowSearch); }
+            set { showSearch = value; }
+        }
 
-        [Parameter] public int ShowSearchThreshold { get; set; } = 0;
+        [Parameter] public int? ShowSearchThreshold 
+        { 
+            get { return showSearchThreshold.GetValueOrDefault(Defaults.ShowSearchThreshold); } 
+            set { showSearchThreshold = value; } 
+        }
 
-        [Parameter] public SelectedTextFormat SelectedTextFormat { get; set; } = SelectedTextFormat.Values;
+        [Parameter] public SelectedTextFormats? SelectedTextFormat 
+        {
+            get { return selectedTextFormat.GetValueOrDefault(Defaults.SelectedTextFormat); }
+            set { selectedTextFormat = value; }
+        }
 
-        [Parameter] public bool ShowPlaceholder { get; set; } = false;
+        [Parameter] public bool? ShowPlaceholder 
+        {
+            get { return showPlaceholder.GetValueOrDefault(Defaults.ShowPlaceholder); }
+            set { showPlaceholder = value; }
+        }
 
         [Parameter] public string PlaceholderText { get; set; }
 
@@ -48,46 +96,40 @@ namespace Blzr.BootstrapSelect
 
         [Parameter] public Expression<Func<TType>> ValidationFor { get; set; }
 
-        private IList<BootstrapSelectOption> FilteredOptions => DisplaySearch && !string.IsNullOrEmpty(searchTerm) ? options.Where(x => x.Text.ToLower().Contains(searchTerm.ToLower())).ToList() : options;
+        protected IList<BootstrapSelectOption> FilteredOptions => DisplaySearch && !string.IsNullOrEmpty(searchTerm) ? options.Where(x => x.Text.ToLower().Contains(searchTerm.ToLower())).ToList() : options;
 
-        private IEnumerable<BootstrapSelectOption> SelectedOptions => options.Where(x => x.Selected);
-        
-        private bool DisplaySearch => ShowSearch && options.Count >= ShowSearchThreshold;
+        protected IEnumerable<BootstrapSelectOption> SelectedOptions => options.Where(x => x.Selected);
 
-        private string FieldCssClasses => CascadedEditContext?.FieldCssClass(fieldIdentifier) ?? "";
+        protected bool DisplaySearch => ShowSearch.Value && options.Count >= ShowSearchThreshold;
 
-        private string ButtonText
+        protected string FieldCssClasses => CascadedEditContext?.FieldCssClass(fieldIdentifier) ?? "";
+
+        protected string ButtonText
         {
             get
             {
                 if (IsMultiple)
                 {
-                    if (!SelectedOptions.Any() || SelectedTextFormat == SelectedTextFormat.Static)
+                    if (!SelectedOptions.Any() || SelectedTextFormat.Value == SelectedTextFormats.Static)
                     {
-                        return string.IsNullOrEmpty(PlaceholderText) ? "Nothing selected" : PlaceholderText;
+                        return string.IsNullOrEmpty(PlaceholderText) ? Defaults.MultiPlaceholderText : PlaceholderText;
                     }
 
-                    return SelectedTextFormat == SelectedTextFormat.Count ? $"{SelectedOptions.Count()} of {options.Count} selected" : string.Join(", ", SelectedOptions.Select(x => x.Text));
+                    return SelectedTextFormat.Value == SelectedTextFormats.Count ? string.Format(Defaults.MultiSelectedText, SelectedOptions.Count(), options.Count) : string.Join(", ", SelectedOptions.Select(x => x.Text));
                 }
 
-                if (ShowPlaceholder && !SelectedOptions.Any())
+                if (ShowPlaceholder.Value && !SelectedOptions.Any())
                 {
-                    return string.IsNullOrEmpty(PlaceholderText) ? "Select..." : PlaceholderText;
+                    return string.IsNullOrEmpty(PlaceholderText) ? Defaults.SinglePlaceholderText : PlaceholderText;
                 }
 
                 return SelectedOptions.Any() ? SelectedOptions.First().Text : options.First().Text;
             }
         }
 
-        private bool isActive = false;
+        #endregion
 
-        private readonly IList<BootstrapSelectOption> options = new List<BootstrapSelectOption>();
-
-        private string searchTerm;        
-
-        private TType initialValue;
-
-        private FieldIdentifier fieldIdentifier;
+        #region Methods
 
         protected override void OnInitialized()
         {
@@ -121,7 +163,7 @@ namespace Blzr.BootstrapSelect
 
             if (!isActive) 
             {
-                if (DelayValueChangedCallUntilClose && !EqualityComparer<TType>.Default.Equals(initialValue, Value))
+                if (DelayValueChangedCallUntilClose.Value && !EqualityComparer<TType>.Default.Equals(initialValue, Value))
                 { 
                     await InvokeValueChanged();
                 }
@@ -146,7 +188,7 @@ namespace Blzr.BootstrapSelect
 
             Value = SetValue();
 
-            if (!DelayValueChangedCallUntilClose)
+            if (!IsMultiple || !DelayValueChangedCallUntilClose.Value)
             {
                 await InvokeValueChanged();
             }
@@ -218,5 +260,7 @@ namespace Blzr.BootstrapSelect
                 throw new NotImplementedException();
             }
         }
+
+        #endregion
     }
 }

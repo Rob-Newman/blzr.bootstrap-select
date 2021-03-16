@@ -1,12 +1,9 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
+using Blzr.BootstrapSelect;
 
 namespace WebAssembly
 {
@@ -18,6 +15,21 @@ namespace WebAssembly
             builder.RootComponents.Add<App>("#app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+            builder.Services.AddBootstrapSelect();
+            //builder.Services.AddBootstrapSelect(defaults =>
+            //    {
+            //        defaults.ShowSearch = true;
+            //        defaults.SearchPlaceholderText = "Find";
+            //        defaults.ShowSearchThreshold = 10;
+            //        defaults.SearchNotFoundText = "Can't find any";
+            //        defaults.DelayValueChangedCallUntilClose = true;
+            //        defaults.SelectedTextFormat = SelectedTextFormats.Count;
+            //        defaults.MultiSelectedText = "{0} selected";
+            //        defaults.ShowPlaceholder = true;
+            //        defaults.MultiPlaceholderText = "Pick some";
+            //        defaults.SinglePlaceholderText = "Pick one";
+            //    });
 
             await builder.Build().RunAsync();
         }

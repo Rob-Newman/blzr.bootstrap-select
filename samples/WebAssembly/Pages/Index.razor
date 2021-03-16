@@ -4,7 +4,7 @@
 
 <h2>Basic</h2>
 <BootstrapSelect Id="basic" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
-                 TType="string" />
+                 TType="string" ShowSearch="false"/>
 
 <h2>Multi</h2>
 <BootstrapSelect Id="multi-basic" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
@@ -49,12 +49,12 @@
                  TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<string>" Label="Multi"/>
 
 <h2>Selected Text Format</h2>
-<BootstrapSelect Id="selected-text-format-values" SelectedTextFormat="SelectedTextFormat.Values" TItem="Country" Data="@countries"
-                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" />
-<BootstrapSelect Id="selected-text-format-static" SelectedTextFormat="SelectedTextFormat.Static" TItem="Country" Data="@countries"
-                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" />
-<BootstrapSelect Id="selected-text-format-count" SelectedTextFormat="SelectedTextFormat.Count" TItem="Country" Data="@countries"
-                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" />
+<BootstrapSelect Id="selected-text-format-values" SelectedTextFormat="SelectedTextFormats.Values" TItem="Country" Data="@countries"
+                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" Label="Values"/>
+<BootstrapSelect Id="selected-text-format-static" SelectedTextFormat="SelectedTextFormats.Static" TItem="Country" Data="@countries"
+                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" Label="Static"/>
+<BootstrapSelect Id="selected-text-format-count" SelectedTextFormat="SelectedTextFormats.Count" TItem="Country" Data="@countries"
+                 TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" Label="Count"/>
 
 
 @code {
