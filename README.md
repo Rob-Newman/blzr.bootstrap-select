@@ -166,3 +166,11 @@ builder.Services.AddBootstrapSelect(defaults =>
 - `ShowActions` (Optional. Default: Uses system wide Defaults) - For multi's only. When set, adds two buttons to the top of the dropdown menu (Select All and Deselect All)
 
 See the code in the index page within samples for more examples
+
+## Nightly builds and NuGet feed
+
+Nightly builds produce unofficial pre-release packages which can be pulled from the [project's NuGet feed on GitHub](https://github.com/Rob-Newman?tab=packages&repo_name=blzr.bootstrap-select).
+
+These packages are being tagged with the Workflow's run number as the package version.
+
+All other builds, such as builds triggered by pull requests produce a NuGet package which can be downloaded as an artifact from the individual GitHub action.
