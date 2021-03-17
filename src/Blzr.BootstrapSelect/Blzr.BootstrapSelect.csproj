@@ -17,7 +17,6 @@
     <PackageTags>Blazor;Razor;Components;Bootstrap;Bootstrap Select;ASP.NET Core;CSharp;Web</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Rob-Newman/blzr.bootstrap-select</PackageProjectUrl>
-    <PackageIcon>icon.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/Blazored/Toast</RepositoryUrl>
 
