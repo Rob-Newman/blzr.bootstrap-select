@@ -13,9 +13,9 @@ env:
   # Project name to pack and publish
   PROJECT_NAME: Blzr.BootstrapSelect
   # GitHub Packages Feed settings
-  #GITHUB_FEED: https://nuget.pkg.github.com/giraffe-fsharp/
-  #GITHUB_USER: dustinmoris
-  #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_FEED: https://nuget.pkg.github.com/rob-newman/
+  GITHUB_USER: rob-newman
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   # Official NuGet Feed settings
   #NUGET_FEED: https://api.nuget.org/v3/index.json
   #NUGET_KEY: ${{ secrets.NUGET_KEY }}
@@ -47,21 +47,21 @@ jobs:
         with:
           name: nupkg
           path: ./src/${{ env.PROJECT_NAME }}/bin/Release/*.nupkg
-  # prerelease:
-  #   needs: build
-  #   if: github.ref == 'refs/heads/develop'
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Download Artifact
-  #       uses: actions/download-artifact@v1
-  #       with:
-  #         name: nupkg
-  #     - name: Push to GitHub Feed
-  #       run: |
-  #         for f in ./nupkg/*.nupkg
-  #         do
-  #           curl -vX PUT -u "$GITHUB_USER:$GITHUB_TOKEN" -F package=@$f $GITHUB_FEED
-  #         done
+  prerelease:
+    needs: build
+    if: github.event_name != 'release'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: nupkg
+      - name: Push to GitHub Feed
+        run: |
+           for f in ./nupkg/*.nupkg
+           do
+            curl -vX PUT -u "$GITHUB_USER:$GITHUB_TOKEN" -F package=@$f $GITHUB_FEED
+           done
   # deploy:
   #   needs: build
   #   if: github.event_name == 'release'
