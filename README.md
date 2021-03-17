@@ -6,6 +6,8 @@ There is no dependency with JavaScript.
 
 ![Build & Test](https://github.com//Rob-Newman/blzr.bootstrap-select/workflows/Build%20&%20Test/badge.svg)
 
+[![Build history](https://buildstats.info/github/chart/rob-newman/blzr.bootstrap-select?branch=main&includeBuildsFromPullRequest=false)](https://github.com/rob-newman/blzr.bootstrap-select/actions?query=branch%3Amain++)
+
 <img alt="Screenshot of component in action" src="screenshot.gif" data-canonical-src="screenshot.gif" width="800" />
 
 ## Getting Setup
