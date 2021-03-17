@@ -3,6 +3,28 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
+    
+    <Authors>Rob Newman</Authors>
+    <Company></Company>
+    <Copyright>Copyright 2021 (c) Rob Newmman. All rights reserved.</Copyright>
+    
+    <Description>A JavaScript free Blazor component for creating bootstrap select elements.</Description>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    <!-- NuGet settings -->
+    <PackageId>Blzr.BootstrapSelect</PackageId>
+    <PackageTags>Blazor;Razor;Components;Bootstrap;Bootstrap Select;ASP.NET Core;CSharp;Web</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Rob-Newman/blzr.bootstrap-select</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Blazored/Toast</RepositoryUrl>
+
+    <!-- SourceLink settings -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    
   </PropertyGroup>
 
   <ItemGroup>
