@@ -4,7 +4,7 @@ This [Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) bootstap
 
 There is no dependency with JavaScript.
 
-![Build & Test](https://github.com//Rob-Newman/blzr.bootstrap-select/workflows/Build%20&%20Test/badge.svg)
+[![Build, Test & Deploy](https://github.com/Rob-Newman/blzr.bootstrap-select/actions/workflows/build.yml/badge.svg)](https://github.com/Rob-Newman/blzr.bootstrap-select/actions/workflows/build.yml)
 
 [![Build history](https://buildstats.info/github/chart/rob-newman/blzr.bootstrap-select?branch=main&includeBuildsFromPullRequest=false)](https://github.com/rob-newman/blzr.bootstrap-select/actions?query=branch%3Amain++)
 
