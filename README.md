@@ -1,6 +1,6 @@
 # blzr.bootstrap-select
 
-This Blazor bootstap select component is inspired by the js [bootstrap-select](https://github.com/snapappointments/bootstrap-select/), rewritten using C# as a Razor Component.
+This [Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) bootstap select component is inspired by the js [bootstrap-select](https://github.com/snapappointments/bootstrap-select/), rewritten using C# as a Razor Component.
 
 There is no dependency with JavaScript.
 
@@ -167,10 +167,16 @@ builder.Services.AddBootstrapSelect(defaults =>
 
 See the code in the index page within samples for more examples
 
-## Nightly builds and NuGet feed
+## Preview builds and NuGet feed
 
-Nightly builds produce unofficial pre-release packages which can be pulled from the [project's NuGet feed on GitHub](https://github.com/Rob-Newman?tab=packages&repo_name=blzr.bootstrap-select).
+All official release packages are published to the official and public NuGet feed.
+
+Preview builds (builds from the `main` branch) produce unofficial pre-release packages which can be pulled from the [project's NuGet feed on GitHub](https://github.com/Rob-Newman?tab=packages&repo_name=blzr.bootstrap-select).
 
 These packages are being tagged with the Workflow's run number as the package version.
 
 All other builds, such as builds triggered by pull requests produce a NuGet package which can be downloaded as an artifact from the individual GitHub action.
+
+## License
+
+Licensed under the MIT license.
