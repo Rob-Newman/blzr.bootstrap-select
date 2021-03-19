@@ -4,6 +4,8 @@ This [Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) bootstap
 
 There is no dependency with JavaScript.
 
+![Nuget](https://img.shields.io/nuget/v/blzr.bootstrapselect.svg)
+
 [![Build, Test & Deploy](https://github.com/Rob-Newman/blzr.bootstrap-select/actions/workflows/build.yml/badge.svg)](https://github.com/Rob-Newman/blzr.bootstrap-select/actions/workflows/build.yml)
 
 [![Build history](https://buildstats.info/github/chart/rob-newman/blzr.bootstrap-select?branch=main&includeBuildsFromPullRequest=false)](https://github.com/rob-newman/blzr.bootstrap-select/actions?query=branch%3Amain++)
@@ -12,7 +14,17 @@ There is no dependency with JavaScript.
 
 ## Getting Setup
 
-Add a project reference to the `Blzr.BootstrapSelect` library
+You can install the package via the NuGet package manager just search for *Blzr.BootstrapSelect*. You can also install via powershell using the following command.
+
+```powershell
+Install-Package Blzr.BootstrapSelect
+```
+
+Or via the dotnet CLI.
+
+```bash
+dotnet add package Blzr.BootstrapSelect
+```
 
 ### 1. Register Services
 You will need to register the Blzr.BootstrapSelect service in your application
