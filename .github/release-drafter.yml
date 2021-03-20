@@ -11,7 +11,9 @@ categories:
       - 'bugfix'
       - 'fix'
   - title: '🧰 Maintenance'
-    label: 'maintenance'
+    label: 
+      - 'maintenance''
+      - 'dependencies'
   - title: '📖 Documentation'
     label: 
       - 'docs'
