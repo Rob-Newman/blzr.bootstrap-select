@@ -12,7 +12,7 @@ categories:
       - 'fix'
   - title: '🧰 Maintenance'
     label: 
-      - 'maintenance''
+      - 'maintenance'
       - 'dependencies'
   - title: '📖 Documentation'
     label: 
