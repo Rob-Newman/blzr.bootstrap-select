@@ -191,7 +191,7 @@ All other builds, such as builds triggered by pull requests produce a NuGet pack
 
 ## Contributing
 
-Everyone is welcome to contribute to Blzr.Bootstrap. Please take a moment to review the [contributing guidelines](CONTRIBUTING.md).
+Everyone is welcome to contribute to Blzr.BootstrapSelect. Please take a moment to review the [contributing guidelines](CONTRIBUTING.md).
 
 ## License
 
