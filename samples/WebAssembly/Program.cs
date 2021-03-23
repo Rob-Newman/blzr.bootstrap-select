@@ -37,6 +37,7 @@ namespace WebAssembly
             //        defaults.ShowActions = true;
             //        defaults.SelectAllText = "All of them";
             //        defaults.DeselectAllText = "None of them";
+            //        defaults.ButtonStyle = ButtonStyles.Success;
             //    });
 
             await builder.Build().RunAsync();

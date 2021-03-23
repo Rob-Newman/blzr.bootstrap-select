@@ -52,5 +52,7 @@ namespace Blzr.BootstrapSelect
         public string SelectAllText { get; set; } = "Select All";
         
         public string DeselectAllText { get; set; } = "Deselect All";
+
+        public ButtonStyles ButtonStyle { get; set; } = ButtonStyles.Default;
     }
 }
