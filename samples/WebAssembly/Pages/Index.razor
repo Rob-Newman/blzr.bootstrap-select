@@ -46,7 +46,7 @@
 <BootstrapSelect Id="live-search" ShowSearch="true" TItem="Country" Data="@countries" TextField="@((item) => item.Name)"
                  ValueField="@((item) => item.Id.ToString())" TType="string" Label="Contains" />
 <BootstrapSelect Id="live-search-starts" ShowSearch="true" TItem="Country" Data="@countries" TextField="@((item) => item.Name)"
-                 ValueField="@((item) => item.Id.ToString())" TType="string" SearchStyle="@SearchStyles.StartsWith" Label="StartsWith" IsMultiple="true"/>
+                 ValueField="@((item) => item.Id.ToString())" TType="string" SearchStyle="@SearchStyles.StartsWith" Label="StartsWith" IsMultiple="true" />
 
 <h2>Max Selections</h2>
 <BootstrapSelect Id="multi-basic" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
@@ -68,9 +68,21 @@
 <BootstrapSelect Id="selected-text-format-count-greater" SelectedTextFormat="SelectedTextFormats.CountGreaterThan" SelectedTextFormatCount="2" TItem="Country" Data="@countries"
                  TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" Label="Count Greater Than" />
 
-@*<h2>Button Styling</h2>
+<h2>Button Styling</h2>
     <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
-                     TType="string" CssClass="btn-primary"/>*@
+                     TType="string" ButtonStyle="ButtonStyles.Default" Label="Default"/>
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" ButtonStyle="ButtonStyles.Primary" Label="Primary" />
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" ButtonStyle="ButtonStyles.Info" Label="Info"/>
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" ButtonStyle="ButtonStyles.Success" Label="Success" />
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" ButtonStyle="ButtonStyles.Warning" Label="Warning" />
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" ButtonStyle="ButtonStyles.Danger" Label="Danger"/>
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" ButtonStyle="ButtonStyles.Custom" Label="Custom" />
 
 <h2>Width</h2>
 <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
@@ -85,7 +97,6 @@
 <h2>Show Actions</h2>
 <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
                  TType="IEnumerable<int>" IsMultiple="true" ShowActions="true" />
-
 @code {
     private IList<Country> countries;
 
@@ -100,12 +111,12 @@
     protected override void OnInitialized()
     {
         countries = new List<Country> {
-            new Country { Id = 1, Name = "United Kingdom", Region = "Europe" },
-            new Country { Id = 2, Name = "United States", Region = "America" },
-            new Country { Id = 3, Name = "Germany", Region = "Europe" },
-            new Country { Id = 4, Name = "France", Region = "Europe" },
-            new Country { Id = 5, Name = "China", Region = "Asia" }
-        };
+        new Country { Id = 1, Name = "United Kingdom", Region = "Europe" },
+        new Country { Id = 2, Name = "United States", Region = "America" },
+        new Country { Id = 3, Name = "Germany", Region = "Europe" },
+        new Country { Id = 4, Name = "France", Region = "Europe" },
+        new Country { Id = 5, Name = "China", Region = "Asia" }
+    };
 
         model1 = new MyModel
         {

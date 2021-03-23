@@ -12,7 +12,7 @@
 }
 
 <div id="@Id" class="dropdown bootstrap-select @(IsMultiple ? "bootstrap-multi-select" : "") show-tick @CssClass" style="@(!string.IsNullOrEmpty(Width) ? $"width: {Width};" : "")">
-    <button type="button" class="btn btn-light dropdown-toggle @FieldCssClasses" role="button" title="@ButtonText" @onclick="ToggleDropDown">
+    <button type="button" class="btn @ButtonClass dropdown-toggle @FieldCssClasses" role="button" title="@ButtonText" @onclick="ToggleDropDown">
         <div class="filter-option">
             <div class="filter-option-inner">
                 <div class="filter-option-inner-inner">

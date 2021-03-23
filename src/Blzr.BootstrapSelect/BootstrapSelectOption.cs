@@ -26,4 +26,15 @@
         Contains,
         StartsWith
     }
+
+    public enum ButtonStyles 
+    { 
+        Default,
+        Primary,
+        Info,
+        Success,
+        Warning,
+        Danger,
+        Custom
+    }
 }

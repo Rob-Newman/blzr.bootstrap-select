@@ -45,6 +45,8 @@ namespace Blzr.BootstrapSelect
 
         private bool? showActions;
 
+        private ButtonStyles? buttonStyle;
+
         #endregion
 
         #region Properties
@@ -137,6 +139,12 @@ namespace Blzr.BootstrapSelect
             set { showActions = value; }
         }
 
+        [Parameter] public ButtonStyles? ButtonStyle
+        {
+            get { return buttonStyle.GetValueOrDefault(Defaults.ButtonStyle); }
+            set { buttonStyle = value; }
+        }
+
         protected IList<BootstrapSelectOption> FilteredOptions 
         {
             get 
@@ -180,6 +188,37 @@ namespace Blzr.BootstrapSelect
                 }
 
                 return SelectedOptions.Any() ? SelectedOptions.First().Text : options.First().Text;
+            }
+        }
+
+        protected string ButtonClass 
+        {
+            get 
+            {
+                string buttonClass = "btn-light";
+
+                switch (ButtonStyle) {
+                    case ButtonStyles.Primary:
+                        buttonClass = "btn-primary";
+                        break;
+                    case ButtonStyles.Info:
+                        buttonClass = "btn-info";
+                        break;
+                    case ButtonStyles.Success:
+                        buttonClass = "btn-success";
+                        break;
+                    case ButtonStyles.Warning:
+                        buttonClass = "btn-warning";
+                        break;
+                    case ButtonStyles.Danger:
+                        buttonClass = "btn-danger";
+                        break;
+                    case ButtonStyles.Custom:
+                        buttonClass = "btn-custom";
+                        break;
+                }
+
+                return buttonClass;
             }
         }
 
