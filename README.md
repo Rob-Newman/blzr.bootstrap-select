@@ -189,6 +189,10 @@ These packages are being tagged with the Workflow's run number as the package ve
 
 All other builds, such as builds triggered by pull requests produce a NuGet package which can be downloaded as an artifact from the individual GitHub action.
 
+## Contributing
+
+Everyone is welcome to contribute to Blzr.Bootstrap. Please take a moment to review the [contributing guidelines](CONTRIBUTING.md).
+
 ## License
 
 Licensed under the MIT license.
