@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "United Kingdom",
+    "region": "Europe"
+  },
+  {
+    "id": 2,
+    "name": "United States",
+    "region": "America"
+  },
+  {
+    "id": 3,
+    "name": "Germany",
+    "region": "Europe"
+  },
+  {
+    "id": 4,
+    "name": "France",
+    "region": "Europe"
+  },
+  {
+    "id": 5,
+    "name": "China",
+    "region": "Asia"
+  }
+]
