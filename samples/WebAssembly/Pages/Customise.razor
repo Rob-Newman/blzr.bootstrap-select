@@ -1,0 +1,130 @@
+﻿@page "/customise"
+@inject HttpClient Http
+
+<h1>Blzr.BootstrapSelect</h1>
+
+@if (countries == null)
+{
+<div class="triple-spinner">
+</div>
+}
+else
+{
+    <h2>Max Selections</h2>
+    <BootstrapSelect Id="multi-basic" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="IEnumerable<int>" IsMultiple="true" MaxSelections="2" />
+
+     <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 IsMultiple="true" 
+                 MaxSelections="2"/&gt;
+    </CodeSnippet>
+
+    <h2>Placeholder Text</h2>
+    <BootstrapSelect Id="placeholder-single" ShowPlaceholder="true" PlaceholderText="Choose one the following..." TItem="Country" Data="@countries"
+                     TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" TType="string" Label="Single" />
+    
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 ShowPlaceholder="true" 
+                 PlaceholderText="Choose one the following..." /&gt;
+    </CodeSnippet>
+
+    <BootstrapSelect Id="placeholder-multi" ShowPlaceholder="true" PlaceholderText="Choose from the following..." TItem="Country" Data="@countries"
+                     TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<string>" Label="Multi" />
+
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 IsMultiple="true"
+                 ShowPlaceholder="true" 
+                 PlaceholderText="Choose from the following..." /&gt;
+    </CodeSnippet>
+
+    <h2>Selected Text Format</h2>
+    <BootstrapSelect Id="selected-text-format-values" SelectedTextFormat="SelectedTextFormats.Values" TItem="Country" Data="@countries"
+                     TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" Label="Values" />
+    
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 IsMultiple="true"
+                 TType="string"
+                 SelectedTextFormat="SelectedTextFormats.Values"/&gt;
+    </CodeSnippet>
+
+    <BootstrapSelect Id="selected-text-format-static" SelectedTextFormat="SelectedTextFormats.Static" TItem="Country" Data="@countries"
+                     TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" Label="Static" />
+    
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 IsMultiple="true"
+                 TType="string"
+                 SelectedTextFormat="SelectedTextFormats.Static"/&gt;
+    </CodeSnippet>
+
+    <BootstrapSelect Id="selected-text-format-count" SelectedTextFormat="SelectedTextFormats.Count" TItem="Country" Data="@countries"
+                     TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" Label="Count" />
+    
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 IsMultiple="true"
+                 TType="string"
+                 SelectedTextFormat="SelectedTextFormats.Count"/&gt;
+    </CodeSnippet>
+
+    <BootstrapSelect Id="selected-text-format-count-greater" SelectedTextFormat="SelectedTextFormats.CountGreaterThan" SelectedTextFormatCount="2" TItem="Country" Data="@countries"
+                     TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())" IsMultiple="true" TType="IEnumerable<int>" Label="Count Greater Than" />
+
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 IsMultiple="true"
+                 TType="string"
+                 SelectedTextFormat="SelectedTextFormats.CountGreaterThan"
+                 SelectedTextFormatCount="2"/&gt;
+    </CodeSnippet>
+
+    <h2>Show Actions</h2>
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="IEnumerable<int>" IsMultiple="true" ShowActions="true" />
+
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 IsMultiple="true"
+                 TType="string"
+                 ShowActions="true" /&gt;
+    </CodeSnippet>
+}
+@code {
+    private IList<Country> countries;
+
+    protected override async Task OnInitializedAsync()
+    {
+        countries = await Http.GetFromJsonAsync<List<Country>>("sample-data/countries.json");
+    }
+}

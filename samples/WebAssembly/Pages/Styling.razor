@@ -1,0 +1,142 @@
+﻿@page "/styling"
+@inject HttpClient Http
+
+<h1>Blzr.BootstrapSelect</h1>
+
+@if (countries == null)
+{
+    <div class="triple-spinner">
+    </div>
+}
+else
+{
+    <h2>Styling</h2>
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" ButtonStyle="ButtonStyles.Default" Label="Default" />
+
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 ButtonStyle="ButtonStyles.Default"/&gt;
+    </CodeSnippet>
+
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" ButtonStyle="ButtonStyles.Primary" Label="Primary" />
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 ButtonStyle="ButtonStyles.Primary"/&gt;
+    </CodeSnippet>
+
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" ButtonStyle="ButtonStyles.Info" Label="Info" />
+
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 ButtonStyle="ButtonStyles.Info"/&gt;
+    </CodeSnippet>
+
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" ButtonStyle="ButtonStyles.Success" Label="Success" />
+
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 ButtonStyle="ButtonStyles.Success"/&gt;
+    </CodeSnippet>
+
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" ButtonStyle="ButtonStyles.Warning" Label="Warning" />
+
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 ButtonStyle="ButtonStyles.Warning"/&gt;
+    </CodeSnippet>
+
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" ButtonStyle="ButtonStyles.Danger" Label="Danger" />
+
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 ButtonStyle="ButtonStyles.Danger"/&gt;
+    </CodeSnippet>
+
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" ButtonStyle="ButtonStyles.Custom" Label="Custom" />
+
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 ButtonStyle="ButtonStyles.Custom"/&gt;
+    </CodeSnippet>
+
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" Width="250px" Label="Width: 250px" />
+
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 TextField="@@((item) => item.Name)"
+                 Data="@@countries"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 Width="250px" /&gt;
+    </CodeSnippet>
+
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" Width="75%" Label="Width: 75%" />
+
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 Width="75%"/&gt;
+    </CodeSnippet>
+
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" ShowTick="true" Label="Show Tick" />
+
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 ShowTick="true"/&gt;
+    </CodeSnippet>
+
+}
+
+@code {
+    private IList<Country> countries;
+
+    protected override async Task OnInitializedAsync()
+    {
+        countries = await Http.GetFromJsonAsync<List<Country>>("sample-data/countries.json");
+    }
+}

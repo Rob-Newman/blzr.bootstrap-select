@@ -1,0 +1,136 @@
+﻿@page "/values"
+@inject HttpClient Http
+
+<h1>Blzr.BootstrapSelect</h1>
+
+@if (countries == null)
+{
+    <div class="triple-spinner">
+    </div>
+}
+else
+{
+    <h2>Value Binding</h2>
+    <BootstrapSelect Id="value-binding" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" @bind-Value="@model.SelectedStringValue" Label="string" />
+    <p>Selected Value: @model.SelectedStringValue</p>
+
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 @@bind-Value="@@model.SelectedStringValue"/&gt;
+    </CodeSnippet>
+
+    <BootstrapSelect Id="value-binding" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="int" @bind-Value="@model.SelectedIntValue" Label="int" />
+    <p>Selected Value: @model.SelectedIntValue</p>
+
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 @@bind-Value="@@model.SelectedIntValue"/&gt;
+    </CodeSnippet>
+
+    <BootstrapSelect Id="value-binding" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="IEnumerable<string>" @bind-Value="@model.SelectedStringValues" Label="IEnumerable<string>" IsMultiple="true" />
+    <p>Selected Value: @string.Join(",", model.SelectedStringValues)</p>
+
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 @@bind-Value="@@model.SelectedStringValues"/&gt;
+    </CodeSnippet>
+
+    <BootstrapSelect Id="value-binding" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="IEnumerable<int>" @bind-Value="@model.SelectedIntValues" Label="IEnumerable<int>" IsMultiple="true" />
+    <p>Selected Value: @string.Join(",", model.SelectedIntValues)</p>
+
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 TextField="@@((item) => item.Name)"
+                 Data="@@countries"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 @@bind-Value="@@model.SelectedIntValues"/&gt;
+    </CodeSnippet>
+
+    <BootstrapSelect Id="basic" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" Value="@basicValue" ValueChanged="@OnValueChanged" Label="Value Changed Callback" />
+    <p>Callback Count: @callBackCount, Selected Value: @basicValue</p>
+
+    <CodeSnippet>
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 Value="@@basicValue"
+                 ValueChanged="@@OnValueChanged"/&gt;
+         
+@@code {
+
+        private string basicValue;
+
+        private int callBackCount = 0;
+
+        private void OnValueChanged(string newValue)
+        {
+            basicValue = newValue;
+            callBackCount++;
+        }
+}
+    </CodeSnippet>
+
+    <EditForm Model="@model2" OnValidSubmit="@ValidSubmit">
+        <DataAnnotationsValidator />
+        <BootstrapSelect Id="validation" TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                         TType="string" @bind-Value="@model2.SelectedStringValue" ValidationFor="@(() => model2.SelectedStringValue)" ShowPlaceholder="true" Label="Validation" />
+        <p>Selected Value: @model2.SelectedStringValue</p>
+        <button type="submit" class="btn btn-outline-primary">Save</button>
+    </EditForm>
+}
+
+@code {
+
+    private IList<Country> countries;
+
+    private MyModel model;
+    
+    private MyModel model2;
+
+    private string basicValue;
+
+    private int callBackCount = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        countries = await Http.GetFromJsonAsync<Country[]>("sample-data/countries.json");
+
+        model = new MyModel
+        {
+            SelectedIntValues = new List<int> { 4 },
+            SelectedStringValues = new List<string> { "5" }
+        };
+
+        model2 = new MyModel();
+    }
+
+    private void OnValueChanged(string newValue)
+    {
+        basicValue = newValue;
+        callBackCount++;
+    }
+
+    private static void ValidSubmit()
+    {
+    }
+}

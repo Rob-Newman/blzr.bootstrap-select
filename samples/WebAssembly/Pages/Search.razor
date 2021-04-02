@@ -1,0 +1,49 @@
+﻿@page "/search"
+@inject HttpClient Http
+
+<h1>Blzr.BootstrapSelect</h1>
+
+@if (countries == null)
+{
+    <div class="triple-spinner">
+    </div>
+}
+else
+{
+    <h2>Live Search</h2>
+    <BootstrapSelect Id="live-search" ShowSearch="true" TItem="Country" Data="@countries" TextField="@((item) => item.Name)"
+                     ValueField="@((item) => item.Id.ToString())" TType="string" Label="Contains" />
+
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 ShowSearch="true"
+                 SearchStyle="@@SearchStyles.Contains" /&gt;
+    </CodeSnippet>
+        
+    <BootstrapSelect Id="live-search-starts" ShowSearch="true" TItem="Country" Data="@countries" TextField="@((item) => item.Name)"
+                     ValueField="@((item) => item.Id.ToString())" TType="string" SearchStyle="@SearchStyles.StartsWith" Label="StartsWith" IsMultiple="true" />
+    
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 TType="string"
+                 ShowSearch="true"
+                 SearchStyle="@@SearchStyles.StartsWith" /&gt;
+    </CodeSnippet>
+
+}
+
+@code {
+    private IList<Country> countries;
+
+    protected override async Task OnInitializedAsync()
+    {
+        countries = await Http.GetFromJsonAsync<List<Country>>("sample-data/countries.json");
+    }
+}
