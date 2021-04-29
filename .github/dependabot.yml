@@ -1,0 +1,16 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Microsoft.AspNetCore.Components.Web
+    versions:
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: Microsoft.AspNetCore.Components
+    versions:
+    - 5.0.4
+    - 5.0.5
