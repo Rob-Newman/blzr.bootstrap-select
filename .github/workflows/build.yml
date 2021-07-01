@@ -48,9 +48,11 @@ jobs:
         run: dotnet pack -v normal -c Release --no-restore --include-symbols --include-source -p:PackageVersion=$GITHUB_RUN_ID src/$PROJECT_NAME/$PROJECT_NAME.*proj
         
       - name: Publish Sample Site
+        if: matrix.os == 'ubuntu-latest'
         run: dotnet publish -c Release samples/WebAssembly/WebAssembly.csproj
         
       - name: Rewrite base href
+        if: matrix.os == 'ubuntu-latest'
         uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
         with:
           html_path: samples/WebAssembly/bin/Release/netstandard2.1/publish/wwwroot/index.html
@@ -58,9 +60,11 @@ jobs:
         
       # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
       - name: Add .nojekyll file
+        if: matrix.os == 'ubuntu-latest'
         run: touch release/wwwroot/.nojekyll
           
       - name: Deploy to Github Pages
+        if: matrix.os == 'ubuntu-latest'
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           ACCESS_TOKEN: $GITHUB_TOKEN
