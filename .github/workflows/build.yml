@@ -57,12 +57,7 @@ jobs:
         with:
           html_path: samples/WebAssembly/bin/Release/net5.0/publish/wwwroot/index.html
           base_href: /${{ env.PROJECT_NAME }}/
-        
-      # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
-      - name: Add .nojekyll file
-        if: matrix.os == 'ubuntu-latest'
-        run: touch release/wwwroot/.nojekyll
-          
+               
       - name: Deploy to Github Pages
         if: matrix.os == 'ubuntu-latest'
         uses: JamesIves/github-pages-deploy-action@releases/v3
