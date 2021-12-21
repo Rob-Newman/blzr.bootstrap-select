@@ -12,6 +12,8 @@ There is no dependency with JavaScript.
 
 <img alt="Screenshot of component in action" src="screenshot.gif" data-canonical-src="screenshot.gif" width="800" />
 
+To see it in action, visit [https://rob-newman.github.io/blzr.bootstrap-select/](https://rob-newman.github.io/blzr.bootstrap-select/)
+
 ## Getting Setup
 
 You can install the package via the NuGet package manager just search for *Blzr.BootstrapSelect*. You can also install via powershell using the following command.
