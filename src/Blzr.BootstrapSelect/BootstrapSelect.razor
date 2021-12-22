@@ -8,11 +8,11 @@
 
 @if (!string.IsNullOrWhiteSpace(Label))
 {
-    <label class="form-control-label" for="@Id">@Label</label>
+    <label class="form-control-label" id="@Id-label">@Label</label>
 }
-
+ 
 <div id="@Id" class="dropdown bootstrap-select @(IsMultiple ? "bootstrap-multi-select" : "") show-tick @CssClass" style="@(!string.IsNullOrEmpty(Width) ? $"width: {Width};" : "")">
-    <button type="button" class="btn @ButtonClass dropdown-toggle @FieldCssClasses" role="button" title="@ButtonText" @onclick="ToggleDropDown">
+    <button type="button" class="btn @ButtonClass dropdown-toggle @FieldCssClasses" role="combobox" title="@ButtonText" @onclick="ToggleDropDown" data-toggle="dropdown" aria-owns="@innerId" aria-haspopup="listbox" aria-expanded="@isActive">
         <div class="filter-option">
             <div class="filter-option-inner">
                 <div class="filter-option-inner-inner">
@@ -38,8 +38,8 @@
                 <input type="text" class="form-control" autocomplete="off" role="textbox" aria-label="Search" placeholder="@Defaults.SearchPlaceholderText" @oninput="PerformSearch">
             </div>
         }
-        <div class="inner show" role="listbox" aria-expanded="false" tabindex="-1">
-            <ul class="dropdown-menu inner show">
+        <div class="inner show" role="listbox" tabindex="-1" id="@innerId" @attributes="ConditionalAriaAttributes">
+            <ul class="dropdown-menu inner show">ß
                 @{ var currentOptGroup = ""; var firstTime = true; }
                 @foreach (var item in FilteredOptions)
                 {
@@ -56,7 +56,7 @@
                         firstTime = false;
                     }
                     <li>
-                        <a role="option" class="dropdown-item @(item.Selected ? "selected" : "") @(!IsMultiple && item.Selected ? "active" : "")" aria-disabled="false" tabindex="0" aria-selected="false" @onclick="@(() => HandleOptionClick(item))">
+                        <a id="@item.Id" role="option" class="dropdown-item @(item.Selected ? "selected" : "") @(!IsMultiple && item.Selected ? "active" : "")" aria-disabled="false" tabindex="0" aria-selected="@item.Selected" @onclick="@(() => HandleOptionClick(item))">
                             @if (IsMultiple || ShowTick.Value)
                             {
                                 <span class="fa bs-ok-default check-mark"></span>

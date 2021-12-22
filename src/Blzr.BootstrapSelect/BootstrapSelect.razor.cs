@@ -47,6 +47,8 @@ namespace Blzr.BootstrapSelect
 
         private ButtonStyles? buttonStyle;
 
+        private string innerId;
+
         #endregion
 
         #region Properties
@@ -222,6 +224,29 @@ namespace Blzr.BootstrapSelect
             }
         }
 
+        protected Dictionary<string, object> ConditionalAriaAttributes
+        {
+            get
+            {
+                var dict = new Dictionary<string, object>();
+                if (IsMultiple)
+                {
+                    dict.Add("aria-multiselectable", true);
+                }
+                else
+                {
+                    var selected = SelectedOptions.FirstOrDefault(x => x.Selected)?.Id;
+                    if (string.IsNullOrEmpty(selected)) {
+                        selected = FilteredOptions.First().Id;
+                    }
+
+                    dict.Add("aria-activedescendant", selected);
+                }
+
+                return dict;
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -232,6 +257,8 @@ namespace Blzr.BootstrapSelect
             {
                 fieldIdentifier = FieldIdentifier.Create(ValueExpression);
             }
+
+            innerId = Guid.NewGuid().ToString();
         }
 
         protected override void OnParametersSet()
