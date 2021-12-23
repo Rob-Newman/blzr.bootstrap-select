@@ -1,4 +1,6 @@
-﻿namespace WebAssembly.Shared.Models
+﻿using System.Collections.Generic;
+
+namespace WebAssembly.Shared.Models
 {
     public class Country
     {
@@ -7,5 +9,7 @@
         public string Name { get; set; }
 
         public string Region { get; set; }
+
+        public IEnumerable<string> AlternativeNames { get; set; }
     }
 }

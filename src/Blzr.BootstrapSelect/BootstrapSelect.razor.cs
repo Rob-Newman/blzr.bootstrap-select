@@ -65,6 +65,8 @@ namespace Blzr.BootstrapSelect
         
         [Parameter] public Func<TItem, string> OptGroupField { get; set; }
 
+        [Parameter] public Func<TItem, IEnumerable<string>> KeyWordsField { get; set; }
+
         [Parameter] public TType Value { get; set; }
 
         [Parameter] public EventCallback<TType> ValueChanged { get; set; }
@@ -153,8 +155,8 @@ namespace Blzr.BootstrapSelect
             {
                 return DisplaySearch && !string.IsNullOrEmpty(searchTerm) 
                     ? SearchStyle == SearchStyles.Contains 
-                        ? options.Where(x => x.Text.ToLower().Contains(searchTerm.ToLower())).ToList() 
-                        : options.Where(x => x.Text.ToLower().StartsWith(searchTerm.ToLower())).ToList()
+                        ? options.Where(x => x.Text.ToLower().Contains(searchTerm.ToLower()) || x.KeyWords.Any(k => k.ToLower().Contains(searchTerm.ToLower()))).ToList() 
+                        : options.Where(x => x.Text.ToLower().StartsWith(searchTerm.ToLower()) || x.KeyWords.Any(k => k.ToLower().StartsWith(searchTerm.ToLower()))).ToList()
                     : options;
             }
         } 
@@ -273,7 +275,8 @@ namespace Blzr.BootstrapSelect
                     var value = ValueField?.Invoke(item);
                     var text = TextField?.Invoke(item);
                     var optGroup = OptGroupField?.Invoke(item);
-                    options.Add(new BootstrapSelectOption { Value = value, Text = text, OptGroup = optGroup, Selected = valueArray.Any(x => x == value) });
+                    var keywords = KeyWordsField?.Invoke(item);
+                    options.Add(new BootstrapSelectOption { Value = value, Text = text, OptGroup = optGroup, KeyWords = keywords != null ? keywords : new List<string>(), Selected = valueArray.Any(x => x == value) });;
                 }
             }
 

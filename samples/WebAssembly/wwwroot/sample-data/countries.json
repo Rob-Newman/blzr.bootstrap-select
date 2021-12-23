@@ -2,17 +2,21 @@
   {
     "id": 1,
     "name": "United Kingdom",
-    "region": "Europe"
+    "region": "Europe",
+    "alternativeNames": [ "UK" ]
+     
   },
   {
     "id": 2,
     "name": "United States",
-    "region": "America"
+    "region": "America",
+    "alternativeNames": [ "USA", "US" ]
   },
   {
     "id": 3,
     "name": "Germany",
-    "region": "Europe"
+    "region": "Europe",
+    "alternativeNames": [ "Deutschland" ]
   },
   {
     "id": 4,
