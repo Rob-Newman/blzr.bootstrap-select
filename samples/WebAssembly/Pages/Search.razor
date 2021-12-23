@@ -23,10 +23,10 @@ else
                  ShowSearch="true"
                  SearchStyle="@@SearchStyles.Contains" /&gt;
     </CodeSnippet>
-        
+
     <BootstrapSelect Id="live-search-starts" ShowSearch="true" TItem="Country" Data="@countries" TextField="@((item) => item.Name)"
                      ValueField="@((item) => item.Id.ToString())" TType="string" SearchStyle="@SearchStyles.StartsWith" Label="StartsWith" IsMultiple="true" />
-    
+
     <CodeSnippet Language="HTML">
 &lt;BootstrapSelect TItem="Country"
                  Data="@@countries"
@@ -37,6 +37,21 @@ else
                  SearchStyle="@@SearchStyles.StartsWith" /&gt;
     </CodeSnippet>
 
+    <BootstrapSelect Id = "key-words-search" ShowSearch="true" TItem="Country" Data="@countries" TextField="@((item) => item.Name)"
+                     ValueField="@((item) => item.Id.ToString())" KeyWordsField="@((item) => item.AlternativeNames)" TType="string" SearchStyle="@SearchStyles.Contains" Label="Key Words" IsMultiple="true" />
+
+    <p>Try searching based on keywords, such as USA, UK or Deutschland.</p>
+
+    <CodeSnippet Language="HTML">
+&lt;BootstrapSelect TItem = "Country"
+                 Data = "@@countries"
+                 TextField = "@@((item) => item.Name)"
+                 ValueField = "@@((item) => item.Id.ToString())"
+                 KeyWordsField="@@((item) => item.AlternativeNames)"
+                 TType = "string"
+                 ShowSearch = "true"
+                 SearchStyle = "@@SearchStyles.Contains" /&gt;
+    </CodeSnippet>
 }
 
 @code {

@@ -161,6 +161,7 @@ builder.Services.AddBootstrapSelect(defaults =>
 - `TextField` (Required) - The `Func` to select the Text value from each item within `Data`
 - `ValueField` (Required) - The `Func` to select the Value value from each item within `Data`
 - `OptGroupField` (Optional) - The `Func` to select the Opt Group value from each item within `Data`. If this is supplied, opt groups will be displayed, and its assumed that the `Data` will be sorted so that all items from the same opt group are positioned together  
+- `KeyWordsField` (Optional) - The `Func` to select the Key Words list from each item within `Data`. If this is supplied, tge key words will be included when performing serching
 - `Id` (Optional) - Html Id to be added to the element
 - `Value` (Optional) - An initial value for the select.  Can be used for 2 way binding using `@bind-value`
 - `ValueChanged` (Optional) - An `EventCallback` to be called when the value changes 
