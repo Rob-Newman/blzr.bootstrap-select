@@ -239,7 +239,7 @@ namespace Blzr.BootstrapSelect
                 {
                     var selected = SelectedOptions.FirstOrDefault(x => x.Selected)?.Id;
                     if (string.IsNullOrEmpty(selected)) {
-                        selected = FilteredOptions.First().Id;
+                        selected = FilteredOptions.FirstOrDefault()?.Id;
                     }
 
                     dict.Add("aria-activedescendant", selected);
