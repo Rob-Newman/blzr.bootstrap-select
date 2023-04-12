@@ -187,13 +187,13 @@ See the code in the index page within samples for more examples
 
 ## Preview builds and NuGet feed
 
-All official release packages are published to the official and public NuGet feed.
+All official release packages are published to the official and public NuGet feed using the official version number.
 
 Preview builds (builds from the `main` branch) produce unofficial pre-release packages which can be pulled from the [project's NuGet feed on GitHub](https://github.com/Rob-Newman?tab=packages&repo_name=blzr.bootstrap-select).
 
-These packages are being tagged with the Workflow's run number as the package version.
+These packages are being versioned using a datetime string (year.month & day.hour &minute - all with leading zeros removed) as the package version.
 
-All other builds, such as builds triggered by pull requests produce a NuGet package which can be downloaded as an artifact from the individual GitHub action.
+All other builds, such as builds triggered by pull requests produce a NuGet package which can be downloaded as an artifact from the individual GitHub action using the above versioning.
 
 ## Contributing
 
