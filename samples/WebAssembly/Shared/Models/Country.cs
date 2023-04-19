@@ -8,6 +8,10 @@ namespace WebAssembly.Shared.Models
 
         public string Name { get; set; }
 
+        public string Culture { get; set; }
+        
+        public string FlagIcon { get; set; }
+
         public string Region { get; set; }
 
         public IEnumerable<string> AlternativeNames { get; set; }
