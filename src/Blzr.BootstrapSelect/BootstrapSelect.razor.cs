@@ -82,6 +82,8 @@ namespace Blzr.BootstrapSelect
         [Parameter] public bool UseIcon { get; set; }
         
         [Parameter] public bool UseSubtext { get; set; }
+
+        [Parameter] public bool Disabled { get; set; } = false;
         
 
         [Parameter] public bool? DelayValueChangedCallUntilClose
