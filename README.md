@@ -95,6 +95,9 @@ The following system wide defaults can be configured as part of the service regi
 - `SelectAllText` (Default: `"Select All"`) - The text to display on the select all button 
 - `DeselectAllText` (Default: `"Deselect All"`) - The text to display on the deselect all button 
 - `ButtonStyle` (Default: `ButtonStyles.Default`) - The button class to use to style the select button
+- `UseIcon` (Default: `false`) - Option for enabling icons on elements.
+- `UseSubtext` (Default: `false`) - Option for enabling sub-text on elements.
+- `Disabled` (Default: `false`) - Option for disabling the button dropdown element.
 
 ### Example
 ```csharp
@@ -160,6 +163,8 @@ builder.Services.AddBootstrapSelect(defaults =>
 - `Data` (Required) - The Data to use to build the drop down options from
 - `TextField` (Required) - The `Func` to select the Text value from each item within `Data`
 - `ValueField` (Required) - The `Func` to select the Value value from each item within `Data`
+- `SubTextField` (Optional) - The `Func` to select the SubText value from each item within `Data`. SubText is displayed as text-muted.
+- `IconField` (Optional) - The `Func` to select the Icon (css-class) value from each item within `Data`. Icon is displayed in front of dropdown item.
 - `OptGroupField` (Optional) - The `Func` to select the Opt Group value from each item within `Data`. If this is supplied, opt groups will be displayed, and its assumed that the `Data` will be sorted so that all items from the same opt group are positioned together  
 - `KeyWordsField` (Optional) - The `Func` to select the Key Words list from each item within `Data`. If this is supplied, the key words will be included when performing serching
 - `Id` (Optional) - Html Id to be added to the element
