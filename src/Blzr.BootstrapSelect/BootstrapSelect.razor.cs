@@ -79,10 +79,6 @@ namespace Blzr.BootstrapSelect
 
         [Parameter] public bool IsMultiple { get; set; }
         
-        [Parameter] public bool UseIcon { get; set; }
-        
-        [Parameter] public bool UseSubtext { get; set; }
-
         [Parameter] public bool Disabled { get; set; } = false;
         
 
@@ -228,7 +224,6 @@ namespace Blzr.BootstrapSelect
             }
         }
 
-
         protected string ButtonClass 
         {
             get 
@@ -282,6 +277,10 @@ namespace Blzr.BootstrapSelect
                 return dict;
             }
         }
+        
+        public bool UseIcon => IconField is not null;
+
+        public bool UseSubtext => SubTextField is not null;
 
         #endregion
 

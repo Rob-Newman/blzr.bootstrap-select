@@ -95,8 +95,6 @@ The following system wide defaults can be configured as part of the service regi
 - `SelectAllText` (Default: `"Select All"`) - The text to display on the select all button 
 - `DeselectAllText` (Default: `"Deselect All"`) - The text to display on the deselect all button 
 - `ButtonStyle` (Default: `ButtonStyles.Default`) - The button class to use to style the select button
-- `UseIcon` (Default: `false`) - Option for enabling icons on elements.
-- `UseSubtext` (Default: `false`) - Option for enabling sub-text on elements.
 - `Disabled` (Default: `false`) - Option for disabling the button dropdown element.
 
 ### Example
