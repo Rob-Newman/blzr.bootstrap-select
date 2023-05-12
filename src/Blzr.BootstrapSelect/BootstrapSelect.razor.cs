@@ -57,11 +57,11 @@ namespace Blzr.BootstrapSelect
 
         [Inject] protected BootstrapSelectDefaults Defaults { get; set; }
         
-        [Parameter] public IEnumerable<TItem> Data { get; set; }
+        [Parameter, EditorRequired] public IEnumerable<TItem> Data { get; set; }
 
-        [Parameter] public Func<TItem, string> TextField { get; set; }
+        [Parameter, EditorRequired] public Func<TItem, string> TextField { get; set; }
 
-        [Parameter] public Func<TItem, string> ValueField { get; set; }
+        [Parameter, EditorRequired] public Func<TItem, string> ValueField { get; set; }
 
         [Parameter] public Func<TItem, string> IconField { get; set; }
 
