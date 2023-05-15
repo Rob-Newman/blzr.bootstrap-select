@@ -3,7 +3,7 @@
 
 <h1>Blzr.BootstrapSelect</h1>
 
-@if (countries == null)
+@if (countries is null)
 {
     <div class="triple-spinner">
     </div>
@@ -130,11 +130,56 @@ else
                  ShowTick="true"/&gt;
     </CodeSnippet>
 
+    <!-- Subtext -->
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" SubTextField="@(item => item.Culture)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" ShowTick="true" Label="SubText" />
+
+    <CodeSnippet Language="HTML">
+        &lt;BootstrapSelect TItem="Country"
+        Data="@@countries"
+        TextField="@@((item) => item.Name)"
+        ValueField="@@((item) => item.Id.ToString())"
+        SubTextField="@@((item) => item.Culture)"
+        TType="string"
+        ShowTick="true"
+        /&gt;
+    </CodeSnippet>
+
+    <!-- Icon -->
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" IconField="@(item => item.FlagIcon)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" ShowTick="true" Label="Icon" />
+
+    <CodeSnippet Language="HTML">
+        &lt;BootstrapSelect TItem="Country"
+        Data="@@countries"
+        TextField="@@((item) => item.Name)"
+        ValueField="@@((item) => item.Id.ToString())"
+        IconField="@@((item) => item.FlagIcon)"
+        TType="string"
+        ShowTick="true"
+        /&gt;
+    </CodeSnippet>
+    
+    <!-- Disabled -->
+    <BootstrapSelect TItem="Country" Data="@countries" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" ShowTick="true" Label="Disabled" Disabled="true" />
+
+    <CodeSnippet Language="HTML">
+        &lt;BootstrapSelect TItem="Country"
+        Data="@@countries"
+        TextField="@@((item) => item.Name)"
+        ValueField="@@((item) => item.Id)"
+        TType="string"
+        ShowTick="true"
+        Disabled="true"
+        /&gt;
+    </CodeSnippet>
+
 }
 
 @code {
     private IList<Country> countries;
-
+    
     protected override async Task OnInitializedAsync()
     {
         countries = await Http.GetFromJsonAsync<List<Country>>("sample-data/countries.json");

@@ -12,11 +12,21 @@
 }
  
 <div id="@Id" class="dropdown bootstrap-select @(IsMultiple ? "bootstrap-multi-select" : "") show-tick @CssClass" style="@(!string.IsNullOrEmpty(Width) ? $"width: {Width};" : "")">
-    <button type="button" class="btn @ButtonClass dropdown-toggle @FieldCssClasses" role="combobox" title="@ButtonText" @onclick="ToggleDropDown" data-toggle="dropdown" aria-owns="@innerId" aria-haspopup="listbox" aria-expanded="@isActive">
+    <button type="button" class="btn @ButtonClass dropdown-toggle @FieldCssClasses" role="combobox" title="@ButtonText" @onclick="ToggleDropDown" data-toggle="dropdown" aria-owns="@innerId" aria-haspopup="listbox" aria-expanded="@isActive" disabled="@Disabled">
         <div class="filter-option">
             <div class="filter-option-inner">
                 <div class="filter-option-inner-inner">
+                    @if (UseIcon)
+                    {
+                        <i class="@ItemSelectedIcon"></i>
+                    }
+                    
                     @ButtonText
+                    
+                    @if (UseSubtext)
+                    {
+                        <span class="text-muted">@ItemSelectedSubText</span>
+                    }
                 </div>
             </div>
         </div>
@@ -61,7 +71,20 @@
                             {
                                 <span class="fa bs-ok-default check-mark"></span>
                             }
-                            <span class="text">@item.Text</span>
+                            
+                            @if (UseIcon && item.Icon is not null)
+                            {
+                                <span class="@(item.Icon)"></span>
+                            }
+
+                            <span class="text">@item.Text
+                            
+                                @if (UseSubtext && item.SubText is not null)
+                                {
+                                    <small class="text-muted">@item.SubText</small>
+                                }
+                            </span>
+
                         </a>
                     </li>
                 }

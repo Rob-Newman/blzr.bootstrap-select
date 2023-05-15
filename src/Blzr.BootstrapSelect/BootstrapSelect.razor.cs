@@ -57,14 +57,18 @@ namespace Blzr.BootstrapSelect
 
         [Inject] protected BootstrapSelectDefaults Defaults { get; set; }
         
-        [Parameter] public IEnumerable<TItem> Data { get; set; }
+        [Parameter, EditorRequired] public IEnumerable<TItem> Data { get; set; }
 
-        [Parameter] public Func<TItem, string> TextField { get; set; }
+        [Parameter, EditorRequired] public Func<TItem, string> TextField { get; set; }
 
-        [Parameter] public Func<TItem, string> ValueField { get; set; }
-        
+        [Parameter, EditorRequired] public Func<TItem, string> ValueField { get; set; }
+
+        [Parameter] public Func<TItem, string> IconField { get; set; }
+
+        [Parameter] public Func<TItem, string> SubTextField { get; set; }
+
         [Parameter] public Func<TItem, string> OptGroupField { get; set; }
-
+        
         [Parameter] public Func<TItem, IEnumerable<string>> KeyWordsField { get; set; }
 
         [Parameter] public TType Value { get; set; }
@@ -74,6 +78,9 @@ namespace Blzr.BootstrapSelect
         [Parameter] public Expression<Func<TType>> ValueExpression { get; set; }
 
         [Parameter] public bool IsMultiple { get; set; }
+        
+        [Parameter] public bool Disabled { get; set; } = false;
+        
 
         [Parameter] public bool? DelayValueChangedCallUntilClose
         {
@@ -195,6 +202,28 @@ namespace Blzr.BootstrapSelect
             }
         }
 
+        protected string ItemSelectedSubText
+        {
+            get
+            {
+                if (IsMultiple || !UseSubtext || !SelectedOptions.Any())
+                    return default;
+
+                return SelectedOptions.First().SubText;
+            }
+        }
+
+        protected string ItemSelectedIcon
+        {
+            get
+            {
+                if (IsMultiple || !UseIcon || !SelectedOptions.Any())
+                    return default;
+
+                return SelectedOptions.First().Icon;
+            }
+        }
+
         protected string ButtonClass 
         {
             get 
@@ -248,6 +277,10 @@ namespace Blzr.BootstrapSelect
                 return dict;
             }
         }
+        
+        public bool UseIcon => IconField is not null;
+
+        public bool UseSubtext => SubTextField is not null;
 
         #endregion
 
@@ -272,11 +305,13 @@ namespace Blzr.BootstrapSelect
                 var valueArray = Value != null ? GetValue() : new string[0];
                 foreach (var item in Data)
                 {
-                    var value = ValueField?.Invoke(item);
-                    var text = TextField?.Invoke(item);
+                    var value   = ValueField?.Invoke(item);
+                    var text    = TextField?.Invoke(item);
+                    var icon    = IconField?.Invoke(item);
+                    var subText = SubTextField?.Invoke(item);
                     var optGroup = OptGroupField?.Invoke(item);
                     var keywords = KeyWordsField?.Invoke(item);
-                    options.Add(new BootstrapSelectOption { Value = value, Text = text, OptGroup = optGroup, KeyWords = keywords != null ? keywords : new List<string>(), Selected = valueArray.Any(x => x == value) });;
+                    options.Add(new BootstrapSelectOption { Value = value, Text = text, Icon = icon, SubText = subText, OptGroup = optGroup, KeyWords = keywords != null ? keywords : new List<string>(), Selected = valueArray.Any(x => x == value) });;
                 }
             }
 

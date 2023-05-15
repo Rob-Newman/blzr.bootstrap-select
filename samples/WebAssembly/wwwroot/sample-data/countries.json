@@ -3,6 +3,8 @@
     "id": 1,
     "name": "United Kingdom",
     "region": "Europe",
+    "culture": "en",
+    "flagIcon": "fa fa-fw fa-flag-checkered",
     "alternativeNames": [ "UK" ]
      
   },
@@ -10,22 +12,30 @@
     "id": 2,
     "name": "United States",
     "region": "America",
+    "culture": "us",
+    "flagIcon": "fa fa-fw fa-flag-usa",
     "alternativeNames": [ "USA", "US" ]
   },
   {
     "id": 3,
     "name": "Germany",
     "region": "Europe",
+    "culture": "de",
+    "flagIcon": "fa fa-fw fa-flag",
     "alternativeNames": [ "Deutschland" ]
   },
   {
     "id": 4,
     "name": "France",
-    "region": "Europe"
+    "region": "Europe",
+    "flagIcon": "fa fa-fw fa-flag",
+    "culture": "fr"
   },
   {
     "id": 5,
     "name": "China",
-    "region": "Asia"
+    "region": "Asia",
+    "flagIcon": "fas fa-fw fa-flag",
+    "culture": "zh"
   }
 ]

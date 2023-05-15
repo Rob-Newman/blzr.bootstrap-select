@@ -11,6 +11,8 @@ namespace Blzr.BootstrapSelect
         public IEnumerable<string> KeyWords { get; set; }
         public bool Selected { get; set; }
         public string Id { get; private set; }
+        public string? SubText { get; set; }
+        public string? Icon { get; set; }
 
         public BootstrapSelectOption()
         {
