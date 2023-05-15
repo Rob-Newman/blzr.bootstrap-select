@@ -95,7 +95,6 @@ The following system wide defaults can be configured as part of the service regi
 - `SelectAllText` (Default: `"Select All"`) - The text to display on the select all button 
 - `DeselectAllText` (Default: `"Deselect All"`) - The text to display on the deselect all button 
 - `ButtonStyle` (Default: `ButtonStyles.Default`) - The button class to use to style the select button
-- `Disabled` (Default: `false`) - Option for disabling the button dropdown element.
 
 ### Example
 ```csharp
@@ -185,6 +184,7 @@ builder.Services.AddBootstrapSelect(defaults =>
 - `SearchStyle` (Optional. Default: Uses system wide Defaults) - When set to `SearchStyles.Contains`, searching will reveal options that contain the searched text.  When set to `SearchStyles.StartsWith`, searching will reveal options that start with the searched text
 - `ShowActions` (Optional. Default: Uses system wide Defaults) - For multi's only. When set, adds two buttons to the top of the dropdown menu (Select All and Deselect All)
 - `ButtonStyle` (Optional. Default: Uses system wide Defaults) - The button class to use to style the select button
+- `Disabled` (Default: `false`) - Option for disabling the button dropdown element.
 
 See the code in the index page within samples for more examples
 
