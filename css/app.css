@@ -1,0 +1,174 @@
+﻿html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+a, .btn-link {
+    color: #0366d6;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.content {
+    padding-top: 1.1rem;
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+
+h2 {
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.nav-link .fa {
+    margin-right: 5px;
+}
+
+p {
+    font-size: 12px;
+    font-style: italic;
+    color: rgb(5, 39, 103);
+    font-weight: bold;
+}
+
+.btn-custom {
+    background-color: #3a0647;
+    color: #fff;
+}
+
+.btn-custom:hover, .btn-custom:focus, .btn-custom:active, .btn-custom.active, .open > .dropdown-toggle.btn-custom {
+    color: #fff;
+    background-color: #2e0539;
+}
+
+pre {
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.loading-container {
+    width: 100%;
+    height: 100vh;
+}
+
+.loading-container .text-primary {
+    color: rgb(5, 39, 103) !important;
+}
+
+.loading-container .loading-content {
+    padding-top: 45vh;
+    text-align: center;
+}
+
+.loading-container .loading-content .sidebar-brand {
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.loading-container .loading-content .triple-spinner {
+    margin: auto;
+}
+
+.triple-spinner {
+    display: block;
+    position: relative;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top: 3px solid rgb(5, 39, 103);
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+.triple-spinner::before,
+.triple-spinner::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid transparent;
+}
+
+    .triple-spinner::before {
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        border-top-color: rgb(5, 39, 103);
+        -webkit-animation: spin 3s linear infinite;
+        animation: spin 3.5s linear infinite;
+    }
+
+    .triple-spinner::after {
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        border-top-color: rgb(5, 39, 103);
+        -webkit-animation: spin 1.5s linear infinite;
+        animation: spin 1.75s linear infinite;
+    }
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
