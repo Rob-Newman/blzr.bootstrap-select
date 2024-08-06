@@ -86,7 +86,7 @@ jobs:
       - name: Rewrite base href
         uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
         with:
-          html_path: samples/WebAssembly/bin/Release/net7.0/publish/wwwroot/index.html
+          html_path: samples/WebAssembly/bin/Release/net8.0/publish/wwwroot/index.html
           base_href: /blzr.bootstrap-select/
                
       - name: Deploy to Github Pages
