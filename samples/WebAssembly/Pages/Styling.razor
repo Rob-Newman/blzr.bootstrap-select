@@ -11,6 +11,7 @@
 else
 {
     <h2>Styling</h2>
+    <!-- Default -->
     <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
                      TType="string" ButtonStyle="ButtonStyles.Default" Label="Default" />
 
@@ -23,6 +24,7 @@ else
                  ButtonStyle="ButtonStyles.Default"/&gt;
     </CodeSnippet>
 
+    <!-- Primary -->
     <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
                      TType="string" ButtonStyle="ButtonStyles.Primary" Label="Primary" />
     <CodeSnippet Language="HTML">
@@ -34,6 +36,7 @@ else
                  ButtonStyle="ButtonStyles.Primary"/&gt;
     </CodeSnippet>
 
+    <!-- Info -->
     <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
                      TType="string" ButtonStyle="ButtonStyles.Info" Label="Info" />
 
@@ -46,6 +49,7 @@ else
                  ButtonStyle="ButtonStyles.Info"/&gt;
     </CodeSnippet>
 
+    <!-- Success -->
     <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
                      TType="string" ButtonStyle="ButtonStyles.Success" Label="Success" />
 
@@ -58,6 +62,7 @@ else
                  ButtonStyle="ButtonStyles.Success"/&gt;
     </CodeSnippet>
 
+    <!-- Warning -->
     <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
                      TType="string" ButtonStyle="ButtonStyles.Warning" Label="Warning" />
 
@@ -70,6 +75,7 @@ else
                  ButtonStyle="ButtonStyles.Warning"/&gt;
     </CodeSnippet>
 
+    <!-- Danger -->
     <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
                      TType="string" ButtonStyle="ButtonStyles.Danger" Label="Danger" />
 
@@ -85,6 +91,7 @@ else
     <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
                      TType="string" ButtonStyle="ButtonStyles.Custom" Label="Custom" />
 
+    <!-- Custom -->
     <CodeSnippet Language="HTML">
 &lt;BootstrapSelect TItem="Country"
                  Data="@@countries"
@@ -94,6 +101,7 @@ else
                  ButtonStyle="ButtonStyles.Custom"/&gt;
     </CodeSnippet>
 
+    <!-- Width 250px -->
     <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
                      TType="string" Width="250px" Label="Width: 250px" />
 
@@ -106,6 +114,7 @@ else
                  Width="250px" /&gt;
     </CodeSnippet>
 
+    <!-- Width: 75% -->
     <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
                      TType="string" Width="75%" Label="Width: 75%" />
 
@@ -118,6 +127,7 @@ else
                  Width="75%"/&gt;
     </CodeSnippet>
 
+    <!-- Show Tick -->
     <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
                      TType="string" ShowTick="true" Label="Show Tick" />
 
@@ -135,14 +145,13 @@ else
                      TType="string" ShowTick="true" Label="SubText" />
 
     <CodeSnippet Language="HTML">
-        &lt;BootstrapSelect TItem="Country"
-        Data="@@countries"
-        TextField="@@((item) => item.Name)"
-        ValueField="@@((item) => item.Id.ToString())"
-        SubTextField="@@((item) => item.Culture)"
-        TType="string"
-        ShowTick="true"
-        /&gt;
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)" 
+                 ValueField="@@((item) => item.Id.ToString())" 
+                 SubTextField="@@((item) => item.Culture)" 
+                 TType="string" 
+                 ShowTick="true"/&gt;
     </CodeSnippet>
 
     <!-- Icon -->
@@ -150,29 +159,39 @@ else
                      TType="string" ShowTick="true" Label="Icon" />
 
     <CodeSnippet Language="HTML">
-        &lt;BootstrapSelect TItem="Country"
-        Data="@@countries"
-        TextField="@@((item) => item.Name)"
-        ValueField="@@((item) => item.Id.ToString())"
-        IconField="@@((item) => item.FlagIcon)"
-        TType="string"
-        ShowTick="true"
-        /&gt;
+&lt;BootstrapSelect TItem="Country"
+                 Data="@@countries"
+                 TextField="@@((item) => item.Name)"
+                 ValueField="@@((item) => item.Id.ToString())"
+                 IconField="@@((item) => item.FlagIcon)"
+                 TType="string"
+                 ShowTick="true" /&gt;
     </CodeSnippet>
     
     <!-- Disabled -->
-    <BootstrapSelect TItem="Country" Data="@countries" ValueField="@((item) => item.Id.ToString())"
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
                      TType="string" ShowTick="true" Label="Disabled" Disabled="true" />
 
     <CodeSnippet Language="HTML">
-        &lt;BootstrapSelect TItem="Country"
-        Data="@@countries"
+        &lt;BootstrapSelect TItem="Country" Data="@@countries"
         TextField="@@((item) => item.Name)"
         ValueField="@@((item) => item.Id)"
         TType="string"
         ShowTick="true"
-        Disabled="true"
-        /&gt;
+        Disabled="true" /&gt;
+    </CodeSnippet>
+    
+    <!-- Custom CSS Class -->
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="string" ShowTick="true" CssClass="my-class" Label="Custom CSS Class" />
+
+    <CodeSnippet Language="HTML">
+        &lt;BootstrapSelect TItem="Country" Data="@@countries"
+        TextField="@@((item) => item.Name)"
+        ValueField="@@((item) => item.Id)"
+        TType="string"
+        ShowTick="true"
+        CssClass="my-class" /&gt;
     </CodeSnippet>
 
 }
