@@ -148,6 +148,10 @@ pre {
         -webkit-animation: spin 1.5s linear infinite;
         animation: spin 1.75s linear infinite;
     }
+    
+    .my-class .dropdown-item {
+        color: red;
+    }
 
 @-webkit-keyframes spin {
     from {
