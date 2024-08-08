@@ -74,27 +74,29 @@ Presumably, you already have bootstrap css referenced in your project. If not, u
 ```
 
 ## Defaults
-The following system wide defaults can be configured as part of the service registration 
+The following system wide defaults can be configured as part of the service registration
 
-- `ShowSearch` (Default: `false`) - Determines if the search box should be displayed. When true, adds a search box to the top of the drop down (works in conjunction with `ShowSearchThreshold`)
-- `ShowSearchThreshold` (Default: `0`) - The threshold to determine the number of options that must exists before the search box is displayed
-- `SearchPlaceholderText` (Default: `"Search"`) - The placeholder text displayed in the search box 
-- `SearchNotFoundText` (Default: `"No matching results"`) - The text displayed if no options match a search term
-- `DelayValueChangedCallUntilClose` (Default: `false`) - For multi's only, whether to delay calling ValueChanged until after the select is closed (default will fire after each option is selected/deselected)
-- `SelectedTextFormat` (Default: `SelectedTextFormats.Values`) - Specifies how the selection is displayed with a multi select. `Values` displays a list of the selected options (separated by `MultiSeparator`). `Static` simply displays the select element's placeholder text. `Count` displays the total number of selected options.  `CountGreaterThan` behaves like `Values` until the number of selected options is greater than `SelectedTextFormatCount` where it then behaves like `Count`
-- `SelectedTextFormatCount` (Default: `0`) - If `SelectedTextFormat` is `CountGreaterThan`, ths is the number of options that must be selected for the `Count` format to be applied
-- `MultiSelectedText` (Default: `"{0} of {1} selected"`) - Specifies the text to display when the `SelectedTextFormat` is `count`. `{0}` is replaced with the number of selected items. `{1}` is replaced with the total number of options  
-- `MultiSeparator` (Default: `", "`) - The separator used for multi selected text when the format is `Values`
-- `ShowPlaceholder` (Default: `false`) - For singles only, determines if the placeholder text should be displayed
-- `MultiPlaceholderText` (Default: `"Nothing selected"`) - The text to display as the placeholder for multi's
-- `SinglePlaceholderText` (Default: `"Select..."`) - The text to display as the placeholder for singles
-- `ShowTick` (Default: `false`) - Whether to show the checkmark on singles 
-- `MaxSelectionsText` (Default: `"Limit reached ({0} items max)"`) - The text to display if the max number of selections is met. `{0}` is replaced with the `MaxSelections` parameter
-- `SearchStyle` (Default: `SearchStyles.Contains`) - When set to `SearchStyles.Contains`, searching will reveal options that contain the searched text.  When set to `SearchStyles.StartsWith`, searching will reveal options that start with the searched text
-- `ShowActions` (Default: `false`) - For multi's only. When set, adds two buttons to the top of the dropdown menu (Select All and Deselect All)
-- `SelectAllText` (Default: `"Select All"`) - The text to display on the select all button 
-- `DeselectAllText` (Default: `"Deselect All"`) - The text to display on the deselect all button 
-- `ButtonStyle` (Default: `ButtonStyles.Default`) - The button class to use to style the select button
+|Name|Type|Default|Description|
+| -- | -- |------ | ---------|
+|`ShowSearch`|`bool`|`false`|Determines if the search box should be displayed. When true, adds a search box to the top of the drop down (works in conjunction with `ShowSearchThreshold`)|
+|`ShowSearchThreshold`|`int`|`0`|The threshold to determine the number of options that must exists before the search box is displayed|
+|`SearchPlaceholderText`|`string`|`"Search"`|The placeholder text displayed in the search box|
+|`SearchNotFoundText`|`string`|`"No matching results"`|The text displayed if no options match a search term|
+|`DelayValueChangedCallUntilClose`|`bool`|`false`|For multi's only, whether to delay calling ValueChanged until after the select is closed (default will fire after each option is selected/deselected)|
+|`SelectedTextFormat`|`SelectedTextFormats`|`SelectedTextFormats.Values`|Specifies how the selection is displayed with a multi select. `Values` displays a list of the selected options (separated by `MultiSeparator`). `Static` simply displays the select element's placeholder text. `Count` displays the total number of selected options.  `CountGreaterThan` behaves like `Values` until the number of selected options is greater than `SelectedTextFormatCount` where it then behaves like `Count`|
+|`SelectedTextFormatCount`|`int`|`0`|If `SelectedTextFormat` is `CountGreaterThan`, ths is the number of options that must be selected for the `Count` format to be applied|
+|`MultiSelectedText`|`string`|`"{0} of {1} selected"`|Specifies the text to display when the `SelectedTextFormat` is `count`. `{0}` is replaced with the number of selected items. `{1}` is replaced with the total number of options|
+|`MultiSeparator`|`string`|`", "`|The separator used for multi selected text when the format is `Values`|
+|`ShowPlaceholder`|`bool`|`false`|For singles only, determines if the placeholder text should be displayed|
+|`MultiPlaceholderText`|`string`|`"Nothing selected"`|The text to display as the placeholder for multi's|
+|`SinglePlaceholderText`|`string`|`"Select..."`|The text to display as the placeholder for singles|
+|`ShowTick`|`bool`|`false`|Whether to show the checkmark on singles|
+|`MaxSelectionsText`|`string`|`"Limit reached ({0} items max)"`|The text to display if the max number of selections is met. `{0}` is replaced with the `MaxSelections` parameter|
+|`SearchStyle`|`SearchStyles`|`SearchStyles.Contains`|When set to `SearchStyles.Contains`, searching will reveal options that contain the searched text.  When set to `SearchStyles.StartsWith`, searching will reveal options that start with the searched text|
+|`ShowActions`|`bool`|`false`|For multi's only. When set, adds two buttons to the top of the dropdown menu (Select All and Deselect All)|
+|`SelectAllText`|`string`|`"Select All"`|The text to display on the select all button|
+|`DeselectAllText`|`string`|`"Deselect All"`|The text to display on the deselect all button|
+|`ButtonStyle`|`ButtonStyles`|`ButtonStyles.Default`|The button class to use to style the select button|
 
 ### Example
 ```csharp
@@ -154,37 +156,38 @@ builder.Services.AddBootstrapSelect(defaults =>
 }
 ```
 ### Parameters
-
-- `TItem` (Required) - The underlying type of the objects used in the Data collection
-- `TType` (Required) - The underlying type of the Value field.  Currently supported is: `string`, `int`, `IEnumerable<string>`, `IEnumerable<int>`
-- `Data` (Required) - The Data to use to build the drop down options from
-- `TextField` (Required) - The `Func` to select the Text value from each item within `Data`
-- `ValueField` (Required) - The `Func` to select the Value value from each item within `Data`
-- `SubTextField` (Optional) - The `Func` to select the SubText value from each item within `Data`. SubText is displayed as text-muted.
-- `IconField` (Optional) - The `Func` to select the Icon (css-class) value from each item within `Data`. Icon is displayed in front of dropdown item.
-- `OptGroupField` (Optional) - The `Func` to select the Opt Group value from each item within `Data`. If this is supplied, opt groups will be displayed, and its assumed that the `Data` will be sorted so that all items from the same opt group are positioned together  
-- `KeyWordsField` (Optional) - The `Func` to select the Key Words list from each item within `Data`. If this is supplied, the key words will be included when performing serching
-- `Id` (Optional) - Html Id to be added to the element
-- `Value` (Optional) - An initial value for the select.  Can be used for 2 way binding using `@bind-value`
-- `ValueChanged` (Optional) - An `EventCallback` to be called when the value changes 
-- `IsMultiple` (Optional. Default `false`) - Determines if the select should be a single or multi
-- `ShowSearch` (Optional. Default: Uses system wide Defaults) - Determines if the search box should be displayed. When true, adds a search box to the top of the drop down (works in conjunction with `ShowSearchThreshold`)
-- `ShowSearchThreshold` (Optional. Default: Uses system wide Defaults) - The threshold to determine the number of options that must exists before the search box is displayed
-- `DelayValueChangedCallUntilClose` (Optional. Default: Uses system wide Defaults) - For multi's only, whether to delay calling ValueChanged until after the select is closed (default will fire after each option is selected/deselected)
-- `SelectedTextFormat` (Optional. Default: Uses system wide Defaults) - Specifies how the selection is displayed with a multi select. `Values` displays a list of the selected options (separated by a ,). `Static` simply displays the select element's placeholder text. `Count` displays the total number of selected options.  `CountGreaterThan` behaves like `Values` until the number of selected options is greater than `SelectedTextFormatCount`
-- `SelectedTextFormatCount` (Optional. Default: Uses system wide Defaults) - If `SelectedTextFormat` is `CountGreaterThan`, ths is the number if options that must be selected until the message is displayed
-- `ShowPlaceholder` (Optional. Default: Uses system wide Defaults) - For singles only, determines if the placeholder text should be displayed
-- `PlaceholderText` (Optional. Default: Uses system wide Defaults) - The placeholder text
-- `Width` (Optional) - If supplied, will be used to add a width to the element
-- `CssClass` (Optional) - Additional classes to be added to the element
-- `Label` (Optional) - A label to added to the element
-- `ValidationFor` (Optional) - A `Expression` to provide the validation information. Can only be used if component is within an `EditForm`
-- `ShowTick` (Optional. Default: Uses system wide Defaults) - Whether to show the checkmark on singles 
-- `MaxSelections` (Optional) - For multi's only, if supplied, limit the number of options that can be selected
-- `SearchStyle` (Optional. Default: Uses system wide Defaults) - When set to `SearchStyles.Contains`, searching will reveal options that contain the searched text.  When set to `SearchStyles.StartsWith`, searching will reveal options that start with the searched text
-- `ShowActions` (Optional. Default: Uses system wide Defaults) - For multi's only. When set, adds two buttons to the top of the dropdown menu (Select All and Deselect All)
-- `ButtonStyle` (Optional. Default: Uses system wide Defaults) - The button class to use to style the select button
-- `Disabled` (Default: `false`) - Option for disabling the button dropdown element.
+|Name|Type|Default|Required/Optional|Description|
+| -- | -- |------ | ------ |---------- |
+|`TItem`|`type`|N/A|Required|The underlying type of the objects used in the Data collection|
+|`TType`|`type`|N/A|Required|The underlying type of the Value field.  Currently supported is: `string`, `int`, `IEnumerable<string>`, `IEnumerable<int>`|
+|`Data`|`IEnumerable<TItem>`|`null`|Required|The Data to use to build the drop down options from|
+|`TextField`|`Func<TItem, string>`|`null`|Required|The `Func` to select the Text value from each item within `Data`|
+|`ValueField`|`Func<TItem, string>`|`null`|Required|The `Func` to select the Value value from each item within `Data`|
+|`SubTextField`|`Func<TItem, string>`|`null`|Optional|The `Func` to select the SubText value from each item within `Data`. SubText is displayed as text-muted.|
+|`IconField`|`Func<TItem, string>`|`null`|Optional|The `Func` to select the Icon (css-class) value from each item within `Data`. Icon is displayed in front of dropdown item.|
+|`OptGroupField`|`Func<TItem, string>`|`null`|Optional|The `Func` to select the Opt Group value from each item within `Data`. If this is supplied, opt groups will be displayed, and its assumed that the `Data` will be sorted so that all items from the same opt group are positioned together|
+|`KeyWordsField`|`Func<TItem, IEnumerable<string>>`|`null`|Optional|The `Func` to select the Key Words list from each item within `Data`. If this is supplied, the key words will be included when performing serching|
+|`Id`|`string`|`null`|Optional|Html Id to be added to the element|
+|`Value`|`TType`|`null`|Optional|An initial value for the select.  Can be used for 2 way binding using `@bind-value`|
+|`ValueChanged`|`EventCallback<TType>`|`null`|Optional|An `EventCallback` to be called when the value changes|
+|`IsMultiple`|`bool`|`false`|Optional|Determines if the select should be a single or multi|
+|`ShowSearch`|`bool`|Uses system wide Defaults|Optional|Determines if the search box should be displayed. When true, adds a search box to the top of the drop down (works in conjunction with `ShowSearchThreshold`)|
+|`ShowSearchThreshold`|`bool`|Uses system wide Defaults|Optional|The threshold to determine the number of options that must exists before the search box is displayed|
+|`DelayValueChangedCallUntilClose`|`bool?`|Uses system wide Defaults|Optional|For multi's only, whether to delay calling ValueChanged until after the select is closed (default will fire after each option is selected/deselected)|
+|`SelectedTextFormat`|`SelectedTextFormats?`|Uses system wide Defaults|Optional|Specifies how the selection is displayed with a multi select. `Values` displays a list of the selected options (separated by a ,). `Static` simply displays the select element's placeholder text. `Count` displays the total number of selected options.  `CountGreaterThan` behaves like `Values` until the number of selected options is greater than `SelectedTextFormatCount`|
+|`SelectedTextFormatCount`|`int?`|Uses system wide Defaults|Optional|If `SelectedTextFormat` is `CountGreaterThan`, ths is the number if options that must be selected until the message is displayed|
+|`ShowPlaceholder`|`bool?`|Uses system wide Defaults|Optional|For singles only, determines if the placeholder text should be displayed|
+|`PlaceholderText`|`string`|Uses system wide Defaults|Optional|)The placeholder text|
+|`Width`|`string`|`null`|Optional|If supplied, will be used to add a width to the element|
+|`CssClass`|`string`|`null`|Optional|Additional classes to be added to the element|
+|`Label`|`string`|`null`|Optional|A label to added to the element|
+|`ValidationFor`|`Expression<Func<TType>>`|`null`|Optional|A `Expression` to provide the validation information. Can only be used if component is within an `EditForm`|
+|`ShowTick`|`bool?`|Uses system wide Defaults|Optional|Whether to show the checkmark on singles|
+|`MaxSelections`|`int?`|`null`|Optional|For multi's only, if supplied, limit the number of options that can be selected|
+|`SearchStyle`|`SearchStyles?`|Uses system wide Defaults|Optional|When set to `SearchStyles.Contains`, searching will reveal options that contain the searched text.  When set to `SearchStyles.StartsWith`, searching will reveal options that start with the searched text|
+|`ShowActions`|`bool?`|Uses system wide Defaults|Optional|For multi's only. When set, adds two buttons to the top of the dropdown menu (Select All and Deselect All)|
+|`ButtonStyle`|`ButtonStyles?`|Uses system wide Defaults|Optional|The button class to use to style the select button|
+|`Disabled`|`bool`|`false`|Optional|Option for disabling the button dropdown element|
 
 See the code in the index page within samples for more examples
 
