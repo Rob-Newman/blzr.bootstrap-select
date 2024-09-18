@@ -72,7 +72,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: nupkg
-        run: ls -R
           
       - name: Push to GitHub Feed
         run: |
