@@ -72,6 +72,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: nupkg
+      - name: Display structure of downloaded files
+        run: ls -R
           
       - name: Push to GitHub Feed
         run: |
