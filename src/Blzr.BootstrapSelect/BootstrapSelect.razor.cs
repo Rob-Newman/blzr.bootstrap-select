@@ -80,7 +80,8 @@ namespace Blzr.BootstrapSelect
         [Parameter] public bool IsMultiple { get; set; }
         
         [Parameter] public bool Disabled { get; set; } = false;
-        
+
+        [Parameter] public bool IsOverlayEnabled { get; set; } = true;
 
         [Parameter] public bool? DelayValueChangedCallUntilClose
         {
