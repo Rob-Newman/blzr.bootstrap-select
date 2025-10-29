@@ -54,5 +54,7 @@ namespace Blzr.BootstrapSelect
         public string DeselectAllText { get; set; } = "Deselect All";
 
         public ButtonStyles ButtonStyle { get; set; } = ButtonStyles.Default;
+        public DropMenuPositions DropMenuPosition { get; set; } = DropMenuPositions.Auto;
+        public string Height { get; set; } = "200px";
     }
 }

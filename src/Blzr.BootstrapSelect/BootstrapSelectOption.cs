@@ -50,4 +50,11 @@ namespace Blzr.BootstrapSelect
         Danger,
         Custom
     }
+
+    public enum DropMenuPositions
+    {
+        Auto,
+        Up,
+        Down
+    }
 }
