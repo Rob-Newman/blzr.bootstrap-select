@@ -98,6 +98,7 @@ The following system wide defaults can be configured as part of the service regi
 |`DeselectAllText`|`string`|`"Deselect All"`|The text to display on the deselect all button|
 |`ButtonStyle`|`ButtonStyles`|`ButtonStyles.Default`|The button class to use to style the select button|
 |`IsOverlayEnabled`|`bool`|`true`| If disabled, the user must manually close the input rather than unfocusing.|
+|`DropMenuPosition`|`DropMenuPositions`|`DropMenuPositions.Down`| Whether the drop down menu opens up or down (above or below) the drop down.|
 
 ### Example
 ```csharp

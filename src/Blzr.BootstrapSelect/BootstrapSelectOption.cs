@@ -53,8 +53,7 @@ namespace Blzr.BootstrapSelect
 
     public enum DropMenuPositions
     {
-        Auto,
-        Up,
-        Down
+        Down,
+        Up
     }
 }

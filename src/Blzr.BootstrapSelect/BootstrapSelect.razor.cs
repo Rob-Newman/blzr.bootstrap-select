@@ -49,8 +49,7 @@ namespace Blzr.BootstrapSelect
         private ButtonStyles? buttonStyle;
 
         private DropMenuPositions? dropMenuPosition;
-        private string height;
-
+        
         private string innerId;
 
         #endregion
@@ -94,15 +93,6 @@ namespace Blzr.BootstrapSelect
         }
 
         [Parameter] public string Width { get; set; }
-
-        /// <summary>
-        /// The height applied to the dropdown menu in a computable unit format (px, %, rem...). When using DropMenuPositions.Auto, a default value will apply.
-        /// </summary>
-        [Parameter] public string Height
-        {
-            get { return DropMenuPosition == DropMenuPositions.Auto && string.IsNullOrEmpty(height) ? Defaults.Height : height; }
-            set { height = value; }
-        }
 
         [Parameter] public bool? ShowSearch 
         {
@@ -275,35 +265,7 @@ namespace Blzr.BootstrapSelect
             }
         }
 
-        protected string DropMenuPositionClass
-        {
-            get
-            {
-                string dropMenuPositionClass = "position-auto";
-
-                switch (DropMenuPosition)
-                {
-                    case DropMenuPositions.Up:
-                        dropMenuPositionClass = "position-up";
-                        break;
-                    case DropMenuPositions.Down:
-                        dropMenuPositionClass = "position-down";
-                        break;
-                }
-
-                return dropMenuPositionClass;
-            }
-        }
-
-        protected string DropMenuPositionAutoVariables
-        {
-            get
-            {
-                return DropMenuPosition == DropMenuPositions.Auto ? _dropMenuPositionAutoVariables : string.Empty;
-            }
-        }
-
-        private string _dropMenuPositionAutoVariables;
+        protected string DropMenuPositionClass => DropMenuPosition == DropMenuPositions.Up ? "position-up" : "position-down";
 
         protected Dictionary<string, object> ConditionalAriaAttributes
         {
@@ -368,7 +330,7 @@ namespace Blzr.BootstrapSelect
             base.OnParametersSet();
         }
 
-        private async Task ToggleDropDown(MouseEventArgs args)
+        private async Task ToggleDropDown()
         {
             isActive = !isActive;
             
@@ -382,10 +344,6 @@ namespace Blzr.BootstrapSelect
             else
             {
                 initialValue = Value;
-
-                var clickClientY = args.ClientY;
-                _dropMenuPositionAutoVariables = $"--lastDropDownToggledY: {clickClientY}px;";
-                await InvokeAsync(StateHasChanged);
             }
         }
 
