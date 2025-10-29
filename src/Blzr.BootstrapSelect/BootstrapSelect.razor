@@ -1,9 +1,9 @@
 ﻿@typeparam TItem
 @typeparam TType
 
-@if (isActive)
+@if (isActive && IsOverlayEnabled)
 {
-    <div class="overlay" @onclick="ToggleDropDown"></div>
+    <div class="bootstrap-select-overlay" @onclick="ToggleDropDown"></div>
 }
 
 @if (!string.IsNullOrWhiteSpace(Label))

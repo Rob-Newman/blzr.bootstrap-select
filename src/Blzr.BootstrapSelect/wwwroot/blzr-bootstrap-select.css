@@ -412,7 +412,7 @@ select.selectpicker {
   float: none;
 }
 
-.overlay {
+.bootstrap-select-overlay {
   position: fixed;
   width: 100%;
   height: 100%;

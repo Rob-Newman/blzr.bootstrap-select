@@ -97,6 +97,7 @@ The following system wide defaults can be configured as part of the service regi
 |`SelectAllText`|`string`|`"Select All"`|The text to display on the select all button|
 |`DeselectAllText`|`string`|`"Deselect All"`|The text to display on the deselect all button|
 |`ButtonStyle`|`ButtonStyles`|`ButtonStyles.Default`|The button class to use to style the select button|
+|`IsOverlayEnabled`|`bool`|`true`| If disabled, the user must manually close the input rather than unfocusing.|
 
 ### Example
 ```csharp
