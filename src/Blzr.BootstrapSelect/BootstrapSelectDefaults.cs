@@ -56,5 +56,7 @@ namespace Blzr.BootstrapSelect
         public ButtonStyles ButtonStyle { get; set; } = ButtonStyles.Default;
         
         public DropMenuPositions DropMenuPosition { get; set; } = DropMenuPositions.Down;
+        
+        public bool IsOverlayEnabled { get; set; } = true;
     }
 }

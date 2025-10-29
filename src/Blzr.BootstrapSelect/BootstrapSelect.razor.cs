@@ -45,6 +45,8 @@ namespace Blzr.BootstrapSelect
         private SearchStyles? searchStyle;
 
         private bool? showActions;
+        
+        private bool? isOverlayEnabled;
 
         private ButtonStyles? buttonStyle;
 
@@ -84,50 +86,54 @@ namespace Blzr.BootstrapSelect
         
         [Parameter] public bool Disabled { get; set; } = false;
 
-        [Parameter] public bool IsOverlayEnabled { get; set; } = true;
+        [Parameter] public bool IsOverlayEnabled
+        {
+            get => isOverlayEnabled.GetValueOrDefault(Defaults.IsOverlayEnabled);
+            set => isOverlayEnabled = value;
+        }
 
         [Parameter] public bool? DelayValueChangedCallUntilClose
         {
-            get { return delayValueChangedCallUntilClose.GetValueOrDefault(Defaults.DelayValueChangedCallUntilClose); }
-            set { delayValueChangedCallUntilClose = value; }
+            get => delayValueChangedCallUntilClose.GetValueOrDefault(Defaults.DelayValueChangedCallUntilClose);
+            set => delayValueChangedCallUntilClose = value;
         }
 
         [Parameter] public string Width { get; set; }
 
         [Parameter] public bool? ShowSearch 
         {
-            get { return showSearch.GetValueOrDefault(Defaults.ShowSearch); }
-            set { showSearch = value; }
+            get => showSearch.GetValueOrDefault(Defaults.ShowSearch);
+            set => showSearch = value;
         }
 
         [Parameter] public int? ShowSearchThreshold 
         { 
-            get { return showSearchThreshold.GetValueOrDefault(Defaults.ShowSearchThreshold); } 
-            set { showSearchThreshold = value; } 
+            get => showSearchThreshold.GetValueOrDefault(Defaults.ShowSearchThreshold);
+            set => showSearchThreshold = value;
         }
 
         [Parameter] public SelectedTextFormats? SelectedTextFormat 
         {
-            get { return selectedTextFormat.GetValueOrDefault(Defaults.SelectedTextFormat); }
-            set { selectedTextFormat = value; }
+            get => selectedTextFormat.GetValueOrDefault(Defaults.SelectedTextFormat);
+            set => selectedTextFormat = value;
         }
 
         [Parameter] public int? SelectedTextFormatCount
         {
-            get { return selectedTextFormatCount.GetValueOrDefault(Defaults.SelectedTextFormatCount); }
-            set { selectedTextFormatCount = value; }
+            get => selectedTextFormatCount.GetValueOrDefault(Defaults.SelectedTextFormatCount);
+            set => selectedTextFormatCount = value;
         }
 
         [Parameter] public bool? ShowPlaceholder 
         {
-            get { return showPlaceholder.GetValueOrDefault(Defaults.ShowPlaceholder); }
-            set { showPlaceholder = value; }
+            get => showPlaceholder.GetValueOrDefault(Defaults.ShowPlaceholder);
+            set => showPlaceholder = value;
         }
 
         [Parameter] public bool? ShowTick
         {
-            get { return showTick.GetValueOrDefault(Defaults.ShowTick); }
-            set { showTick = value; }
+            get => showTick.GetValueOrDefault(Defaults.ShowTick);
+            set => showTick = value;
         }
 
         [Parameter] public string PlaceholderText { get; set; }
@@ -144,26 +150,26 @@ namespace Blzr.BootstrapSelect
 
         [Parameter] public SearchStyles? SearchStyle
         {
-            get { return searchStyle.GetValueOrDefault(Defaults.SearchStyle); }
-            set { searchStyle = value; }
+            get => searchStyle.GetValueOrDefault(Defaults.SearchStyle);
+            set => searchStyle = value;
         }
 
         [Parameter] public bool? ShowActions
         {
-            get { return showActions.GetValueOrDefault(Defaults.ShowActions); }
-            set { showActions = value; }
+            get => showActions.GetValueOrDefault(Defaults.ShowActions);
+            set => showActions = value;
         }
 
         [Parameter] public ButtonStyles? ButtonStyle
         {
-            get { return buttonStyle.GetValueOrDefault(Defaults.ButtonStyle); }
-            set { buttonStyle = value; }
+            get => buttonStyle.GetValueOrDefault(Defaults.ButtonStyle);
+            set => buttonStyle = value;
         }
 
         [Parameter] public DropMenuPositions? DropMenuPosition
         {
-            get { return dropMenuPosition.GetValueOrDefault(Defaults.DropMenuPosition); }
-            set { dropMenuPosition = value; }
+            get => dropMenuPosition.GetValueOrDefault(Defaults.DropMenuPosition);
+            set => dropMenuPosition = value;
         }
 
         protected IList<BootstrapSelectOption> FilteredOptions 

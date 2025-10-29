@@ -123,6 +123,8 @@ builder.Services.AddBootstrapSelect(defaults =>
                     defaults.SelectAllText = "All of them";
                     defaults.DeselectAllText = "None of them";
                     defaults.ButtonStyle = ButtonStyles.Success;
+                    defaults.IsOverlayEnabled = false;
+                    defaults.DropMenuPosition = DropMenuPositions.Up;
                 });
 ```
 
@@ -190,6 +192,8 @@ builder.Services.AddBootstrapSelect(defaults =>
 |`ShowActions`|`bool?`|Uses system wide Defaults|Optional|For multi's only. When set, adds two buttons to the top of the dropdown menu (Select All and Deselect All)|
 |`ButtonStyle`|`ButtonStyles?`|Uses system wide Defaults|Optional|The button class to use to style the select button|
 |`Disabled`|`bool`|`false`|Optional|Option for disabling the button dropdown element|
+|`IsOverlayEnabled`|`bool`|`true`|Optional|If disabled, the user must manually close the input rather than unfocusing.|
+|`DropMenuPosition`|`DropMenuPositions`|`DropMenuPositions.Down`|Optional| Whether the drop down menu opens up or down (above or below) the drop down.|
 
 See the code in the index page within samples for more examples
 
