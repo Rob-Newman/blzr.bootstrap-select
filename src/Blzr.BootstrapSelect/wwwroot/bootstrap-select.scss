@@ -55,6 +55,7 @@ select.selectpicker {
         display: inline-flex;
         align-items: center;
         justify-content: space-between;
+        font-size: 1em;
 
         &:after {
             margin-top: -1px;
@@ -159,7 +160,6 @@ select.selectpicker {
     &:not(.input-group-btn),
     &[class*="col-"] {
         float: none;
-        display: inline-block;
         margin-left: 0;
     }
     // Forces the pull to the right, if necessary
@@ -311,9 +311,11 @@ select.selectpicker {
     &[class*="col-"] .dropdown-toggle {
         width: 100%;
     }
+
     // The selectpicker dropdown
     .dropdown-menu {
         min-width: 100%;
+        align-content: center;
         @include box-sizing(border-box);
 
         > .inner:focus {
@@ -328,6 +330,19 @@ select.selectpicker {
             margin: 0;
             border-radius: 0;
             box-shadow: none;
+        }
+        // Show above
+        &.position-up {
+            transform: translateY(-100%);
+            top: 0;
+            bottom: unset;
+            margin: 0 0 .125rem 0;
+        }
+        //Show below (default for position-auto)
+        &.position-auto,
+        &.position-down {
+            position: absolute;
+            top: unset;
         }
 
         li {

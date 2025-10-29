@@ -119,6 +119,47 @@ else
                  TType="string"
                  ShowActions="true" /&gt;
     </CodeSnippet>
+
+    <h2>Dropmenu Position</h2>
+
+    <p>When using DropMenuPositions.Auto, the Height parameter is required to calculate its position. If no Height is set, a default value is used (200px).</p>
+
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="IEnumerable<int>" DropMenuPosition="DropMenuPositions.Auto" Height="300px" Label="Auto" />
+
+    <CodeSnippet Language="HTML">
+        &lt;BootstrapSelect TItem="Country"
+        Data="@@countries"
+        TextField="@@((item) => item.Name)"
+        ValueField="@@((item) => item.Id.ToString())"
+        TType="string"
+        DropMenuPosition="DropMenuPositions.Auto"
+        Height="300px"/&gt;
+    </CodeSnippet>
+
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="IEnumerable<int>" DropMenuPosition="DropMenuPositions.Down" Label="Down" />
+
+    <CodeSnippet Language="HTML">
+        &lt;BootstrapSelect TItem="Country"
+        Data="@@countries"
+        TextField="@@((item) => item.Name)"
+        ValueField="@@((item) => item.Id.ToString())"
+        TType="string"
+        DropMenuPosition="DropMenuPositions.Down" /&gt;
+    </CodeSnippet>
+
+    <BootstrapSelect TItem="Country" Data="@countries" TextField="@((item) => item.Name)" ValueField="@((item) => item.Id.ToString())"
+                     TType="IEnumerable<int>" DropMenuPosition="DropMenuPositions.Up" Label="Up" />
+
+    <CodeSnippet Language="HTML">
+        &lt;BootstrapSelect TItem="Country"
+        Data="@@countries"
+        TextField="@@((item) => item.Name)"
+        ValueField="@@((item) => item.Id.ToString())"
+        TType="string"
+        DropMenuPosition="DropMenuPositions.Up" /&gt;
+    </CodeSnippet>
 }
 @code {
     private IList<Country> countries;

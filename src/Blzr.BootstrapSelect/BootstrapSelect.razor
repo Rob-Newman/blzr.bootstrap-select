@@ -10,8 +10,8 @@
 {
     <label class="form-control-label" id="@Id-label">@Label</label>
 }
- 
-<div id="@Id" class="dropdown bootstrap-select @(IsMultiple ? "bootstrap-multi-select" : "") show-tick @CssClass" style="@(!string.IsNullOrEmpty(Width) ? $"width: {Width};" : "")">
+
+<div id="@Id" class="dropdown bootstrap-select @DropMenuPositionClass @(IsMultiple ? "bootstrap-multi-select" : "") show-tick @CssClass" style="@(!string.IsNullOrEmpty(Width) ? $"width: {Width};" : "")">
     <button type="button" class="btn @ButtonClass dropdown-toggle @FieldCssClasses" role="combobox" title="@ButtonText" @onclick="ToggleDropDown" data-toggle="dropdown" aria-owns="@innerId" aria-haspopup="listbox" aria-expanded="@isActive" disabled="@Disabled">
         <div class="filter-option">
             <div class="filter-option-inner">
@@ -20,9 +20,9 @@
                     {
                         <i class="@ItemSelectedIcon"></i>
                     }
-                    
+
                     @ButtonText
-                    
+
                     @if (UseSubtext)
                     {
                         <span class="text-muted">@ItemSelectedSubText</span>
@@ -31,81 +31,119 @@
             </div>
         </div>
     </button>
-    <div class="dropdown-menu @(isActive? "show" : "")" role="combobox" tabindex="-1">
-        @if (IsMultiple && ShowActions.Value)
-        {  
-            <div class="bs-actionsbox">
-                <div class="btn-group btn-group-sm btn-block">
-                    <button type="button" class="btn btn-light" @onclick="SelectAll">@Defaults.SelectAllText</button>
-                    <button type="button" class="btn btn-light" @onclick="DeselectAll">@Defaults.DeselectAllText</button>
+    <div class="dropdown-position-detector" style="@DropMenuPositionAutoVariables">
+        <div class="dropdown-menu @DropMenuPositionClass @(isActive? "show" : "")" role="combobox" tabindex="-1" style="@GetDropdownMenuStyle()">
+            @if (IsMultiple && ShowActions.Value)
+            {
+                <div class="bs-actionsbox">
+                    <div class="btn-group btn-group-sm btn-block">
+                        <button type="button" class="btn btn-light" @onclick="SelectAll">@Defaults.SelectAllText</button>
+                        <button type="button" class="btn btn-light" @onclick="DeselectAll">@Defaults.DeselectAllText</button>
+                    </div>
                 </div>
-            </div>
-        }
+            }
 
-        @if (DisplaySearch)
-        {
-            <div class="bs-searchbox">
-                <input type="text" class="form-control" autocomplete="off" role="textbox" aria-label="Search" placeholder="@Defaults.SearchPlaceholderText" @oninput="PerformSearch">
-            </div>
-        }
-        <div class="inner show" role="listbox" tabindex="-1" id="@innerId" @attributes="ConditionalAriaAttributes">
-            <ul class="dropdown-menu inner show">
-                @{ var currentOptGroup = ""; var firstTime = true; }
-                @foreach (var item in FilteredOptions)
-                {
-                    if (ShowOptGroups && item.OptGroup != currentOptGroup)
-                    {
-                        if (!firstTime)
-                        { 
-                            <li class="dropdown-divider"></li>
-                        }
-                        <li class="dropdown-header">
-                            <span class="text">@item.OptGroup</span>
-                        </li>
-                        currentOptGroup = item.OptGroup;
-                        firstTime = false;
+            @if (DisplaySearch)
+            {
+                <div class="bs-searchbox">
+                    <input type="text" class="form-control" autocomplete="off" role="textbox" aria-label="Search" placeholder="@Defaults.SearchPlaceholderText" @oninput="PerformSearch">
+                </div>
+            }
+            <div class="inner show" role="listbox" tabindex="-1" id="@innerId" @attributes="ConditionalAriaAttributes">
+                <ul class="dropdown-menu inner show">
+                    @{
+                        var currentOptGroup = ""; var firstTime = true;
                     }
-                    <li>
-                        <a id="@item.Id" role="option" class="dropdown-item @(item.Selected ? "selected" : "") @(!IsMultiple && item.Selected ? "active" : "")" aria-disabled="false" tabindex="0" aria-selected="@item.Selected" @onclick="@(() => HandleOptionClick(item))">
-                            @if (IsMultiple || ShowTick.Value)
+                    @foreach (var item in FilteredOptions)
+                    {
+                        if (ShowOptGroups && item.OptGroup != currentOptGroup)
+                        {
+                            if (!firstTime)
                             {
-                                <span class="fa bs-ok-default check-mark"></span>
+                                <li class="dropdown-divider"></li>
                             }
-                            
-                            @if (UseIcon && item.Icon is not null)
-                            {
-                                <span class="@(item.Icon)"></span>
-                            }
-
-                            <span class="text">@item.Text
-                            
-                                @if (UseSubtext && item.SubText is not null)
+                            <li class="dropdown-header">
+                                <span class="text">@item.OptGroup</span>
+                            </li>
+                            currentOptGroup = item.OptGroup;
+                            firstTime = false;
+                        }
+                        <li>
+                            <a id="@item.Id" role="option" class="dropdown-item @(item.Selected ? "selected" : "") @(!IsMultiple && item.Selected ? "active" : "")" aria-disabled="false" tabindex="0" aria-selected="@item.Selected" @onclick="@(() => HandleOptionClick(item))">
+                                @if (IsMultiple || ShowTick.Value)
                                 {
-                                    <small class="text-muted">@item.SubText</small>
+                                    <span class="fa bs-ok-default check-mark"></span>
                                 }
-                            </span>
 
-                        </a>
-                    </li>
-                }
+                                @if (UseIcon && item.Icon is not null)
+                                {
+                                    <span class="@(item.Icon)"></span>
+                                }
 
-                @if (!string.IsNullOrEmpty(searchTerm) && !FilteredOptions.Any())
-                {
-                    <li class="no-results">@Defaults.SearchNotFoundText</li>
-                }
+                                <span class="text">
+                                    @item.Text
 
-            </ul>
-        </div>
-        @if (showMaxSelectedMessage)
-        {
-            <div class="notify">
-                <div>@string.Format(Defaults.MaxSelectionsText, MaxSelections)</div>
+                                    @if (UseSubtext && item.SubText is not null)
+                                    {
+                                        <small class="text-muted">@item.SubText</small>
+                                    }
+                                </span>
+
+                            </a>
+                        </li>
+                    }
+
+                    @if (!string.IsNullOrEmpty(searchTerm) && !FilteredOptions.Any())
+                    {
+                        <li class="no-results">@Defaults.SearchNotFoundText</li>
+                    }
+
+                </ul>
             </div>
-        }
+            @if (showMaxSelectedMessage)
+            {
+                <div class="notify">
+                    <div>@string.Format(Defaults.MaxSelectionsText, MaxSelections)</div>
+                </div>
+            }
+        </div>
     </div>
 </div>
+
+<style>
+    @GetStyleTagContent()
+</style>
 
 @if (ValidationFor != null)
 {
     <ValidationMessage For="@ValidationFor" />
+}
+
+@{
+    string GetDropdownMenuStyle() => string.IsNullOrEmpty(Height) ? "" : $"max-height: {Height}; height: {Height}; overflow-y: auto";
+
+    string GetThisContainerName() => $"dropdown_{innerId}";
+    string GetHasThisSelector() => $"[aria-owns=\"{innerId}\"]";
+
+    string GetStyleTagContent()
+    {
+        if (DropMenuPosition != DropMenuPositions.Auto)
+            return string.Empty;
+
+        return $@"
+            .bootstrap-select:has({GetHasThisSelector()}) .dropdown-position-detector {{
+                height: calc(100vh - var(--lastDropDownToggledY) - 1em - 1.5rem);
+                position: absolute;
+                container-type: size;
+                container-name: {GetThisContainerName()};
+            }}
+
+            @container {GetThisContainerName()} (max-height: {Height}) {{
+                .bootstrap-select:has({GetHasThisSelector()}) .dropdown-position-detector > .dropdown-menu.position-auto {{
+                    top: clamp(calc(1em + 1.5rem - var(--lastDropDownToggledY)), calc(-1em - 1.5rem - {Height}), calc(100vh - var(--lastDropDownToggledY) - {Height} - calc(1em + 1.5rem)));
+                    margin: 0 0 .125rem 0;
+                }}
+            }}
+        ";
+    }
 }
